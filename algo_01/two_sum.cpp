@@ -2,12 +2,13 @@
 #include<vector>
 #include<cstdlib>
 
+//consertar
 int main() {
     int n, t;
     std::cin >> n >> t;
-    std::vector<int> arr;
+    std::vector<int> arr(n);
     arr.reserve(n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < (int)arr.size(); i++) {
         int x;
         std::cin >> x;
         arr.push_back(x);
