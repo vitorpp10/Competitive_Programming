@@ -1,0 +1,15 @@
+nomes de arquivos/pastas
+
+exemplos:
+
+arquivos:
+
+b_1001 = beecrowd
+c_1001 = codeforces
+l_1001 = leetcode
+
+pastas:
+
+b_trainig_contest = beecrowd
+c_training_contest20 = codeforces
+l_training_pr1500 = leetcode
