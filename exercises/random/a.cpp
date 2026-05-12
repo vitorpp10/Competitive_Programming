@@ -15,8 +15,7 @@ int main()
     cin >> n;
     for (int i = 1; i < n; i++) {
         if (n % i == 0) {
-            int m = n/i;
-            cout << m << endl;
+            cout << n/i << endl;
         }
     }
     return 0;
