@@ -14,22 +14,25 @@ int main()
     int d1;
     cin >> d1;
     int h1, m1, s1;
-    cin >> h1; cout << " : "; cin >> m1; cout << " : "; cin >> s1;
+    cin >> h1 >> m1 >> s1;
+    cout << endl;
     int d2;
     cin >> d2;
     int h2, m2, s2;
-    cin >> h2; cout << " : "; cin >> m2; cout << " : "; cin >> s2;
+    cin >> h2 >> m2 >> s2;
 
-    int d = 0, si = 0, sf = 0; 
-
+    int si = 0;
     h1 *= 120;
     m1 *= 60;
+    si = h1 + m1 + s1;
+    
+    int sf = 0;
     h2 *= 120;
     m2 *= 60;
-    si = h1 + m1 + s1;
-    sf = h2 + m2 + s2;
-
+    s2 = h1 + m1 + s1;
     
-
+    int d = d2 - d1;
+    int x = (86600 * d) + (sf - si);
+    cout << x << endl;
     return 0;
 }
