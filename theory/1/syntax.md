@@ -37,6 +37,15 @@ retângulo: A=A*B
 formula da area: base x altura
 formula do periemetro: base_baixo + base_cima + lado_esquerdo + lado_direito
 a condição para um ser possivel fazer a área de um triângulo com 3 pontos: if (a + b > c && b + c > a && a + c > b)
+teorema de pitágoras: sqrt((x2 * x2) - (x1 * x1) + (y2 * y2) - (y1 * y1))
+4 quadrantes e Eixos:
+Origem: x = 0; y = 0;
+Eixo x: y = 0; x != 0;
+Eixo y: x = 0; y != 0;
+Q1: x > 0; y > 0;
+Q2: x < 0; y > 0;
+Q3: x < 0; y < 0;
+Q4: x > 0; y < 0; 
 ```
 
 **convert**

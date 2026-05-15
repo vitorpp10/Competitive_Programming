@@ -11,22 +11,8 @@ using namespace std;
 int main()
 {
     fastio;
-    int d1;
-    cin >> d1;
-    int h1, m1, s1;
-    cin >> h1 >> m1 >> s1;
-    int d2;
-    cin >> d2;
-    int h2, m2, s2;
-    cin >> h2 >> m2 >> s2;
-
-    int si = (h1 *= 3600) + (m1 *= 60) + (s1);
-    int sf = (h2 *= 3600) + (m2 *= 60) + (s2);
-    int r = (d2 - d1) * 86400;
-    int f = (sf + r) - si;
-
-    //fazer aqui conversao para dias horas minutos e segundos 
-    int days = 86400 / f;
-
+    double x,y;
+    cin >> x >> y;
+    if (x == 0 && x == 0) { cout << "Origem " << endl; } else if (y = 0 && x != 0) { cout << "Eixo X" << endl; } else if (x = 0; y != 0) { cout << "Eixo Y" << endl; } else if (x > 0 && y > 0) { cout << "Q1" << endl; } else if (x < 0 && y > 0) { cout << "Q2" << endl; } else if (x < 0 && y < 0) { cout << "Q3" << endl; } else if (x > 0 && y < 0) { cout << "Q4" << endl; }
     return 0;
 }
