@@ -15,24 +15,18 @@ int main()
     cin >> d1;
     int h1, m1, s1;
     cin >> h1 >> m1 >> s1;
-    cout << endl;
     int d2;
     cin >> d2;
     int h2, m2, s2;
     cin >> h2 >> m2 >> s2;
 
-    int si = 0;
-    h1 *= 120;
-    m1 *= 60;
-    si = h1 + m1 + s1;
-    
-    int sf = 0;
-    h2 *= 120;
-    m2 *= 60;
-    s2 = h1 + m1 + s1;
-    
-    int d = d2 - d1;
-    int x = (86600 * d) + (sf - si);
-    cout << x << endl;
+    int si = (h1 *= 3600) + (m1 *= 60) + (s1);
+    int sf = (h2 *= 3600) + (m2 *= 60) + (s2);
+    int r = (d2 - d1) * 86400;
+    int f = (sf + r) - si;
+
+    //fazer aqui conversao para dias horas minutos e segundos 
+    int days = 86400 / f;
+
     return 0;
 }
