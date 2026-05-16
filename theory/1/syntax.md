@@ -14,6 +14,13 @@ vector<int> x={1,2,3};
 sort(x.begin(), x.end(), greater<int>());
 ```
 
+**caps**
+```
+para checar se uma letra é maiuscula: isupper(letra);
+para checar se uma letra é minuscula: islower(letra);
+para checar se uma letra é alguma do alfabeto de A a Z: isalpha(letra)
+```
+
 **fibonnaci**
 ```
 #include<bits/stdc++.h>
@@ -46,6 +53,9 @@ Q1: x > 0; y > 0;
 Q2: x < 0; y > 0;
 Q3: x < 0; y < 0;
 Q4: x > 0; y < 0; 
+para adicionar porcentagem ou tirar porcentagem:
+add: (100% + porcentagem), exemplo: 100% + 15% = 115%->1,15->1,15 * n
+sub: (100% - porcentagem), exemplo: 100% - 15% = 85%->0,85->0,85 * n
 ```
 
 **convert**
@@ -56,4 +66,9 @@ converter minutos em minutos de 1 hora = minutos % 60
 converter dias em horas: d *= 24
 converter horas pra minutos: h *= 60
 converter minutos para segundos: m *= 60
+```
+
+**invert**
+```
+inverter vetor: reverser(vetor.begin(), vetor.end());
 ```

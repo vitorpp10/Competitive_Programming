@@ -1,0 +1,1 @@
+Matemática aplicada a programação de baixo nível + syntax e fórmula para programação competitiva.
