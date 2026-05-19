@@ -72,3 +72,31 @@ converter minutos para segundos: m *= 60
 ```
 inverter vetor: reverser(vetor.begin(), vetor.end());
 ```
+
+**set** 
+```
+tira os itens duplicados de uma lista e ordena ela
+#include<set>
+std::set<tipo> x;
+x.insert(vetor);
+```
+
+**map**
+```
+criando map de 2 valores e comparando eles
+map<string, int> m1={"a", 3};
+map<string, int> m2={"a", 2};
+for (const auto& x : m1) {
+    string nome = m1.first;
+    int valor_m1 = m1.second;
+
+    //aqui voce cria uma variavel que vai fazer o m2 tentar achar um nome igual tem no m1, se ele achar ele pega o valor do nome que foi achado e depois faz a conta que você quiser
+
+    auto comparar_nomes = m2.find(nome);
+    if (comparar_nomes != m2.end()) {
+        int valor_m2 = comparar_nomes->second;
+        int resultado = valor_m1 * valor_m2;
+        cout << resultado << endl;
+    }
+}
+```

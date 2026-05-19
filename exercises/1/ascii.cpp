@@ -27,9 +27,7 @@ int main()
         }
         reverse(ls.begin(), ls.end());
         int m = size / 2;
-        for (int i = m; i < size; i++) {
-            ls[i] = ls[i] - 1;
-        }
+        for (int i = m; i < size; i++) { ls[i] = ls[i] - 1; }
         stringstream ss;
         for (char c : ls) { ss << c; }
         cout << ss.str() << endl;
