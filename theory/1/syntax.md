@@ -101,3 +101,12 @@ for (const auto& x : m1) {
     }
 }
 ```
+
+**max_element**
+```
+pega o maior elemento de um vector e seu indice 
+
+auto it = std::max_element(vetor.begin(), vetor,end())
+int indice = distance(m.begin(), it)
+cout << *it
+```
