@@ -56,6 +56,7 @@ Q4: x > 0; y < 0;
 para adicionar porcentagem ou tirar porcentagem:
 add: (100% + porcentagem), exemplo: 100% + 15% = 115%->1,15->1,15 * n
 sub: (100% - porcentagem), exemplo: 100% - 15% = 85%->0,85->0,85 * n
+media ponderada; (valor1*peso1) + (valor2*peso2) + (valor3*peso3) / (peso1+peso2+peso3...pesoN) 
 ```
 
 **convert**
