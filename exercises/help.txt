@@ -13,3 +13,5 @@ pastas:
 b_trainig_contest = beecrowd
 c_training_contest20 = codeforces
 l_training_pr1500 = leetcode
+
+/random -> pasta de exercicios temporarios ou que não houve nenhuma anotação

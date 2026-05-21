@@ -1,5 +1,3 @@
-//PAREI NO 1150 BEECROWD QUASE TERMINANDO ESTE
-
 #include <bits/stdc++.h>
 
 #define fastio \
@@ -12,19 +10,16 @@ using namespace std;
 
 int main() {
     fastio;
-    int x, z;
-    cin >> x;
-    while (true) {
-      cin >> z;
-      if (z > x) { break; }
+    int n;
+    cin >> n;
+    map<string, string> s;
+    for (int i = 0; i < n; i++) {
+      string x;
+      cin >> x;
+      if (s.find(x) != s.end()) {
+        s[x] = x + "1";
+        cout << s[x] << endl;
+      } else { s[x] = "OK"; cout << s[x] << endl; }
     }
-    int s = 0;
-    int c = 0;
-    for(int i = x; i < z; i++) {
-      s += x + i;
-      if (s > z) { break; }
-      c++;
-    }
-    cout << c << endl;
     return 0;
 }

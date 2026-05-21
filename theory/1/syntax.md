@@ -79,7 +79,11 @@ inverter vetor: reverser(vetor.begin(), vetor.end());
 tira os itens duplicados de uma lista e ordena ela
 #include<set>
 std::set<tipo> x;
-x.insert(vetor);
+x.insert(n);
+se for um vetor:
+vector<int> x={1,2,3};
+set<int> y;
+y.insert(x.begin(), x.end());
 ```
 
 **map**
@@ -100,6 +104,15 @@ for (const auto& x : m1) {
         cout << resultado << endl;
     }
 }
+
+---
+
+m.find()
+função do map que checa se a mesma chave ja existe em sua lista se existir faz x coisa
+string new_value = "oi";
+if (m.find(new_value) != m.end()) { 
+    //ja existe
+    } else { m[new_value] = 10; }
 ```
 
 **max_element**
@@ -109,4 +122,42 @@ pega o maior elemento de um vector e seu indice
 auto it = std::max_element(vetor.begin(), vetor,end())
 int indice = distance(m.begin(), it)
 cout << *it
+```
+
+**set_difference**
+```
+para quando voce quer comparar duas listas e o que tem em uma que nao tem na outra
+vector<int> x={1,1,2,3};
+vector<int> y={4,5,5,6};
+set<int> xx;
+xx.insert(x);
+set<int> yy;
+yy.insert(yy);
+set<int> falta_no_x;
+set<int> falta_no_y;
+//oque falta no y que tem no x
+set_difference(xx.begin(), xx.end(), yy.begin(), yy.end(), inserter(falta_no_y, falta_no_y.begin())); 
+//oque falta no x que tem no y
+set_difference(yy.begin(), yy.end(), xx.begin(), xx.end(), inserter(falta_no_x, falta_no_x.begin()));
+
+ou tambem voce pode comparar dois e ver somente com funções do set
+
+set<int> a;
+set<int> b;
+a.insert(xx.begin(), xx.end());
+b.insert(yy.begin(), yy.end());
+int ex1 = 0;
+for (int n : a) {
+    if (b.count(n) == 0) {
+        ex1++;
+    }
+}
+int ex2 = 0;
+for (int n : b) {
+    if (a.count(n) == 0) { 
+        ex2++;
+    }
+}
+int resp = min(ex1, ex2);
+cout << resp << endl;
 ```
