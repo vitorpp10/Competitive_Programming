@@ -161,3 +161,16 @@ for (int n : b) {
 int resp = min(ex1, ex2);
 cout << resp << endl;
 ```
+
+**vector**
+```
+substr para dividir indices no tamanho que quiser
+substr(posicao_inicial, tamanho_por_indice);
+
+string texto = "ABCD";
+vector<string> res;
+//vou dividir de 2 em 2 por exemplo entao: "i+=2"
+for (size_t i = 0; i < texto.length(); i+=2) {
+    res.push_back(texto.substr(i, 2));
+}
+```

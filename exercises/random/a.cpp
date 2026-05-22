@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+  //339A CODEFORCES TERMINAR DEPOIS
+
+/* #include <bits/stdc++.h>
+#include <cstdlib>
+#include <sstream>
+#include <string>
 
 #define fastio \
     ios_base::sync_with_stdio(false); \
@@ -9,17 +14,17 @@
 using namespace std;
 
 int main() {
-    fastio;
-    int n;
-    cin >> n;
-    map<string, string> s;
-    for (int i = 0; i < n; i++) {
-      string x;
-      cin >> x;
-      if (s.find(x) != s.end()) {
-        s[x] = x + "1";
-        cout << s[x] << endl;
-      } else { s[x] = "OK"; cout << s[x] << endl; }
+    fastio;   
+    string s;
+    cin >> s;
+    int si = s.size();
+    if (si >= 100) { exit(EXIT_FAILURE); }
+    vector<char> ss;
+    for (char c : s) { if (c != '+') { ss.push_back(c); }}
+    string res = "";
+    for (size_t i = 0; i < s.length(); i++) {
+      res += f[i];
+      if (i < si - 1) { res += "+"; }
     }
     return 0;
-}
+} */
