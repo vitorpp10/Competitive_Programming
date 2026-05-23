@@ -1,8 +1,5 @@
-vg      
-first
-first
-first
-second
-second
-third
-third
+7
+19
+10
+6
+0 
