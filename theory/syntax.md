@@ -102,4 +102,15 @@ converter horas pra minutos: h *= 60
 converter minutos para segundos: m *= 60
 ```
 
+**accumulate**
+```
+somar um vetor em uma linha de forma rápida:
+long long s = accumulate(vetor.begin(), vetor.end(), 0LL);
+```
 
+**erase** 
+```
+apagar qualquer indice de um vetor
+vetor.erase(vetor.begin + n);
+n seria o número do indice que voce quer apagar a partir do indice 0
+```

@@ -12,14 +12,14 @@ int main() {
     fastio;
     int n;
     cin >> n;
-    int anterior = 0;
-    int atual = 1;
-    cout << anterior; 
+    int an = 0;
+    int at = 1;
+    cout << an;
     for (int i = 2; i <= n; i++) {
-      int proximo = atual + anterior;
-      cout << " " << proximo;
-      atual = proximo;
-      anterior = atual;
+      int p = an + at;
+      cout << " " << at;
+      an = at;
+      at = p;
     }
     cout << endl;
     return 0;
