@@ -114,3 +114,39 @@ apagar qualquer indice de um vetor
 vetor.erase(vetor.begin + n);
 n seria o número do indice que voce quer apagar a partir do indice 0
 ```
+
+**stack**
+```
+funciona como um LIFO(Last in, First Out), ou seja, o último elemento a entrar é o primeiro a sair
+
+stack<int> s;
+
+-push(valor): Insere um elemento no topo da pilha.
+-pop(): Remove o elemento que está no topo (não retorna valor, apenas deleta).
+-top(): Retorna (dá acesso) ao elemento que está no topo atual, sem removê-lo.
+-empty(): Retorna um booleano (true se a pilha estiver vazia, false se tiver elementos).
+-size(): Retorna a quantidade de elementos atualmente guardados na pilha.
+```
+
+**lower_bound && upper_bound**
+```
+int posicao_inicial = lower_bound(v.begin(), v.end(), x) - v.begin();
+int posicao_final   = upper_bound(v.begin(), v.end(), x) - v.begin();
+```
+
+**formula da busca binaria personalizada**
+```
+double low = MIN_POSSIVEL, high = MAX_POSSIVEL;
+
+for (int i = 0; i < 100; i++) { // Loop de precisão fixa
+    double mid = (low + high) / 2.0;
+
+    // 1. Sua função/simulação matemática que testa o 'mid'
+    if (condicao_de_sucesso(mid)) {
+        low = mid;   // Ou high = mid (depende se o problema quer aumentar ou diminuir)
+    } else {
+        high = mid;  // Ou low = mid
+    }
+}
+// No final, 'low' ou 'mid' tem a resposta perfeita.
+```
