@@ -150,3 +150,87 @@ for (int i = 0; i < 100; i++) { // Loop de precisão fixa
 }
 // No final, 'low' ou 'mid' tem a resposta perfeita.
 ```
+
+**formula fatorial**
+```
+n = n * (n-1) * (n-2)...
+fatorial = 1;
+for (int i = x; i > 0; i--) {
+    fatorial *= i;
+}
+//sendo o x o valor a ser fatorado
+```
+
+**achar o primeiro valor que nao seja x + substr**
+```
+usar isso aqui quando a questao pedir para excluir um numero, ou se ele for repetido
+npos representa a busca maxima possivel, ou seja, quer dizer que a busca falhou e nao foi encotrado valores
+substr corta a variavel ate o valor e deixa o resto depois dele
+
+auto x = string.find_first_not_of('y');
+//se nao encontrar x
+if (x == npos) {
+    ... 
+} else { string.substr(x); }
+
+exemplo melhor:
+
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string texto = "0000456";
+    auto pos = texto.find_first_not_of('0');
+
+    // Se não achou (npos), vira ""; se achou, corta daquela posição em diante
+    std::string resultado = (pos == std::string::npos) ? "" : texto.substr(pos);
+
+    std::cout << resultado << std::endl; // Saída: 456
+    return 0;
+}
+```
+
+**formula para descobrir se um valor é primo ou nao** 
+```
+bool primo = true;
+if (x <= 1) { primo = false; }
+for (ll i = 2; i * i <= n; i++) { 
+    if (n % i == 0) { primo = false; break; }
+}
+cout << primo << endl;
+
+um numero é primo quando é divisivel somente por um (todo numero) e quando é por ele mesmo (todo numero tambem, ai o n % i, tenta achar algum outro alem dos obvios, se achar é false,e usamos i*i pois, se for maior ja passa do limite, so isso
+```
+
+**mdc (algoritmo de euclides)**
+```
+essa formula usa o algoritmo de euclides que basicamente faz o mdc de dois números de forma rápida e completa
+std::gcd(x,y);
+
+se for mais de 2 numeros
+std::gcd(std::gcd(x, y), z);
+
+//exemplo
+int resultado = std::gcd(std::gcd(12, 24), 30); // Da 6!
+
+assim seria o gcd por tras 
+while(y!=0) {
+    int r = x % y;
+    x = y;
+    y = r;
+}
+cout << x << endl;
+```
+
+**mmc**  
+```
+pega o mdc primeiro depois faz a formula abaixo
+(x*y) / mdc;
+
+ou seja:
+
+int x,y;
+cin >> x >> y;
+int mdc = gcd(x,y);
+int mmc = (x*y) / mdc;
+```

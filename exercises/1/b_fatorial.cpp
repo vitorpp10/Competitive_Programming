@@ -10,17 +10,11 @@ using namespace std;
 
 int main() {
     fastio;
-    int t;
-    cin >> t;
-    while(t--) {
-      int x,y;
-      cin >> x >> y; 
-      while(y!=0) {
-        int r = x % y;
-        x = y;
-        y = r;
-      }
-      cout << x << endl;
+    int n, f=1;
+    cin >> n;
+    for (int i = n; i > 0; i--) {
+      f *= i;
     }
+      cout << f << endl;
     return 0;
-} 
+}
