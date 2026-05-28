@@ -10,17 +10,15 @@ using namespace std;
 
 int main() {
     fastio;
-    int t;
-    cin >> t;
-    while(t--) {
-      int x,y;
-      cin >> x >> y; 
-      while(y!=0) {
-        int r = x % y;
-        x = y;
-        y = r;
-      }
-      cout << x << endl;
+    vector<int> v(20);
+    for (int i = 0; i < v.size(); i++) {
+      int n;
+      cin >> n;
+      v[i] = n;
+    }
+    reverse(v.begin(), v.end());
+    for (int i = 0; i < v.size(); i++) {
+      cout << "N[" << i << "] = " << v[i] << endl;
     }
     return 0;
-} 
+}

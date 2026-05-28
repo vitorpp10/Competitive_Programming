@@ -234,3 +234,49 @@ cin >> x >> y;
 int mdc = gcd(x,y);
 int mmc = (x*y) / mdc;
 ```
+
+**vetor bidimensional**
+```
+um vetor dentro de outro vetor, muito usado para quando você precisa guarda um vetor inteiro como 1 indice de outro vetor para manipular algo 
+vector<vector<tipo>> v;
+v.push_back(outro_vetor);
+```
+
+**find (procurar um valor dentro de um vetor ou vetor bidimensional)**
+```
+para vetor normal -> vector<int> v;
+auto it = find(v.begin(), v.end(), valor_que_quer_procurar);
+
+para vetor bidimensional
+auto it = find(v[indice].begin(), v[indice].end(), valor_que_quer_procurar);
+```
+
+**porcentagem**
+```
+quando quiser descontar de um valor:
+double descontado = n/100 * %;
+
+quando quiser adicionar com base na porcentagem:
+double adicionado = n * %/100;
+```
+
+**os unicos numeros que nao tem divisoes impares sao aqueles que estao na potencia de 2**
+```
+ex: \(12 = 2 \times 2 \times 3\), olha o 3 aí; \(20 = 2 \times 2 \times 5\)
+
+formula para ver se um numero e potencia de 2:
+if ((n & (n - 1)) == 0) -> potencia 
+
+como isso funciona por baixo dos panos supondo n = 8:
+8 em binario e 1000
+7 em binario e 0111 
+isso da = 0000 que é 0, exatamente oque o if acima pede, porém isso so funciona para potência de 2, porque um numero que e potencia de 2 seu antecessor em binario vai ser o contrariodele, ou seja, vai dar 0 significando que é uma potencia de 2
+```
+
+**descobrir se um numero e impar ou par de forma mais rapida**
+```
+todo numero par em bits termina em 0 e todo numero impar em bits termina em 1, entao:
+se fizermos n & 1, isolamos apenas o ultimo bit, podendo manipular ele
+if ((n & 1) == 0)) { par } else { impar }
+isso e mais rapido que usar MOD(%)
+```
