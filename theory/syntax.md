@@ -280,3 +280,39 @@ se fizermos n & 1, isolamos apenas o ultimo bit, podendo manipular ele
 if ((n & 1) == 0)) { par } else { impar }
 isso e mais rapido que usar MOD(%)
 ```
+
+***so e preciso usar chaves({}) quando linha>1*** 
+
+**algoritmo de crivo para pegar todos os numeros primos de 1 ate n**
+```
+int n;
+cin >> n;
+vector<bool> p(n+1, true);
+vector<int> v;
+p[0] = p[1] = false;
+for(int i = 2; i*i <= n; i++)
+    if (p[i])
+        for (int j = i*i; j <= n; j+=i) 
+            p[j] = false;
+for(int i = 2; i <= n; i++) 
+    if (p[i]) v.push_back(i);
+```
+
+**crivo fatorial para pegar numeros quase primos**
+```
+int n,c=0;
+cin >> n;
+vector<int> v(n+1, 0);
+for(int i = 2; i <= n; i++)
+    if(v[i] == 0) 
+        for (int j = i; j <= n; j+=i) 
+            v[j]++;
+for(int i = 1; i <= n; i++) 
+    if(v[i] >= 2) c++;
+cout << c << endl;
+```
+
+**lcm para mmc de dois números**
+```
+std::lcm(x, y);
+```
