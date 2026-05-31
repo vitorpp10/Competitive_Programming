@@ -10,15 +10,18 @@ using namespace std;
 
 int main() {
     fastio;
-    int n,c=0;
-    cin >> n;
-    vector<int> v(n+1, 0);
-    for(int i = 2; i <= n; i++) 
-      if(v[i] == 0) 
-        for(int j = i; j <= n; j+=i) 
-          v[j]++;
-    for(int i = 1; i <= n; i++) 
-      if(v[i] == 2) c++;
-    cout << c << endl;
+    int l; 
+    char n;
+    cin >> l >> n;
+    double s = 0; 
+    vector<vector<double>> m(12, vector<double>(12));
+    for(int i = 0; i < 12; i++)
+      for(int j = 0; j < 12; j++)
+        cin >> m[i][j];
+    for(int j = 0; j < 12; j++)
+      s += m[l][j];
+    if(n == 'S') { 
+      cout << fixed << setprecision(1) << s << endl;
+    } else if(n == 'M') { cout << fixed << setprecision(1) << (double)s/12 << endl; }
     return 0;
 }

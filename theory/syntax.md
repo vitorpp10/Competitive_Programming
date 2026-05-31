@@ -316,3 +316,17 @@ cout << c << endl;
 ```
 std::lcm(x, y);
 ```
+
+**para pegar o menor elemento de um vetor e seu indice**
+```
+valor:
+int menor = *min_element(v.begin(), v.end()));
+
+indice:
+int menor_indice = min_element(v.begin(), v.end()) - v.begin();
+```
+
+**para fazer uma matriz em c++**
+```
+vector<vector<double>> m(12, vector<double>(12));
+```
