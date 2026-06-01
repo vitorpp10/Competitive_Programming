@@ -330,3 +330,20 @@ int menor_indice = min_element(v.begin(), v.end()) - v.begin();
 ```
 vector<vector<double>> m(12, vector<double>(12));
 ```
+
+**Acima da Diagonal Principal** 
+`for(int j = i + 1; j < N; j++)`
+
+**Abaixo da Diagonal Principal**
+`for(int j = 0; j < i; j++)`
+
+**Acima da Diagonal Secundária**
+`for(int j = 0; j < (N-1) - i; j++)`
+
+**Abaixo da Diagonal Secundária**
+`for(int j = N - i; j < N; j++)`
+
+**prev pega o penultimo elemento de um vetor**
+```
+prev(vetor.end());
+```
