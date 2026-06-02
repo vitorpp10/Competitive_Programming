@@ -7,11 +7,13 @@ arquivos:
 b_1001 = beecrowd
 c_1001 = codeforces
 l_1001 = leetcode
+a_1001 = atcoder
 
 pastas:
 
 b_trainig_contest = beecrowd
 c_training_contest20 = codeforces
 l_training_pr1500 = leetcode
+a_training_camp = atcoder
 
 /random -> pasta de exercicios temporarios ou que não houve nenhuma anotação

@@ -347,3 +347,17 @@ vector<vector<double>> m(12, vector<double>(12));
 ```
 prev(vetor.end());
 ```
+
+**two sum classico**
+```
+for(int i = 0; i < n; i++) {
+    for(int j = i + 1; j < n; j++) {
+        if(v[j] == t - v[i]) cout << i << j << endl;  
+    }
+}
+```
+
+**eliminar palavras iguais**
+```
+unordered_set<tipo> u(vetor.begin(), vetor.end());
+```
