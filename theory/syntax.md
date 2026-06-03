@@ -361,3 +361,33 @@ for(int i = 0; i < n; i++) {
 ```
 unordered_set<tipo> u(vetor.begin(), vetor.end());
 ```
+
+quando o exercicio tiver limites muitos pequenos sempre teste todas as possibilidades com loops
+
+**loop comparando valor atual com proximo map**
+```
+map<char,int> m={{'A', 1}, {'B', 2}};
+for(auto it = m.begin(); it != m.end(); it++) {
+    int proximo = next(it);
+    //condicoes aqui
+}
+```
+
+**pegar o maior ou menor valor de um map ou unordered com lambda**
+```
+auto mm = max_element(m.begin(), m.end(), [](const auto& a, const auto& b) { return a.second < b.second });
+```
+
+**two_pointer**
+```cpp
+//exemplo two pointer para peccorer 2 vetores e achar a menor diferenca de valor entre eles
+int menor = 2e9;
+int i = 0, j = 0;
+while(i < n && j < m) {
+    if(abs(vetor1[i] - vetor2[j]) < me) me = abs(vetor1[i] = vetor2[j]);
+    if(vetor1[i] < vetor2[i]) i++; else j++;
+}
+cout << me << endl;
+
+//quem denomina se vai andar ou nao sao as condicoes nao um FOR por exemplo
+```
