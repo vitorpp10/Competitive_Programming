@@ -132,6 +132,9 @@ stack<int> s;
 ```
 int posicao_inicial = lower_bound(v.begin(), v.end(), x) - v.begin();
 int posicao_final   = upper_bound(v.begin(), v.end(), x) - v.begin();
+cout << posicao_inicial << "," << posicao_final-1 << endl;
+
+fazemos "posicao_final-1" pois o upper retorna um numero/indice maior que o valor alvo entao voltamos uma casa para pegar o valor em si ne, no caso faça isso quando quiser pegar o valor em si e não um maior que ele
 ```
 
 **formula da busca binaria personalizada**
@@ -390,4 +393,23 @@ while(i < n && j < m) {
 cout << me << endl;
 
 //quem denomina se vai andar ou nao sao as condicoes nao um FOR por exemplo
+```
+
+**x=-x**
+```cpp
+macete para parar de usar impar/par ou if/else em alguns casos, exemplo abaixo:
+
+int s = 0;
+int sinal = 1; //se começar negativo mude para -1 
+
+for(int i = 0; i < v.size(); i++) {
+    s += v[i] * sinal;
+    sinal = -sinal; // 1 vira -1, -1 vira 1, e assim por diante
+}
+
+ou seja, ele ja faz a soma e subtracao dependo do i, se por exemplo o problema for subtraia todos os pares e todos os impares, e so voce fazer isso porque i começa em 0 que e par, depois impar, depois par, ai vai subtraindo sozinho, a logica por tras fica:
+
+s += 10 * 1; 
+s += 5 * (-1); 
+s = 5 //pois (10-5) 5 vira negativo
 ```
