@@ -1,9 +1,10 @@
 usar `while(t--)` sempre que o exercicio pedir n casos de forma isolada
 
 minha snippet: 
-```
+```cpp
 #include <bits/stdc++.h>
 
+#define ll long long
 #define fastio \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL)
@@ -20,37 +21,19 @@ int main() {
 ```
 
 **sort syntax:**
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 vector<int> x={1,2,3};
 sort(x.begin(), x.end());
 ```
 **sort inverse syntax:**
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 vector<int> x={1,2,3};
 sort(x.begin(), x.end(), greater<int>());
-
-para verificar se um vetor esta ordenado
-is_sorted(vector.begin(), vector.end());
 ```
-
-**bubble sort**
-```
-tecnica para trocar vetor da esquerda pra direita
-
-vector<int> v={4,3,2,1};
-for (size_t i = 0; i < v.size(); i++) {
-    for (size_t j = 1; j < v.size(); j++) {
-        if (v[j-1] > v[j]) swap(v[j-i], v[j]);
-    }
-}
-
-se usa size_t pois ele aceita numeros gigantes e nao aceita negativas, usamos ele pois da mais garantia que nao vá haver falhas no compilador
-```
-
 **caps**
 ```
 para checar se uma letra é maiuscula: isupper(letra);
@@ -58,10 +41,10 @@ para checar se uma letra é minuscula: islower(letra);
 para checar se uma letra é alguma do alfabeto de A a Z: isalpha(letra)
 ```
 **fibonnaci**
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
-int n, x = 0, y = 0, next = 0;
+int n, x = 0, y = 1, next = 0;
 for (int i = 0; i < n; i++) {
 cout << x << endl;
 next = x + y;
@@ -102,6 +85,18 @@ converter horas pra minutos: h *= 60
 converter minutos para segundos: m *= 60
 ```
 
+**fibonacci**
+```cpp
+int anterior = 0;
+int atual = 1;
+for (int i = 2; i <= n; i++) {
+	int proximo = atual + anterior;
+	cout << " " << atual;
+	anterior = atual;
+	atual = proximo;
+}
+```
+
 **accumulate**
 ```
 somar um vetor em uma linha de forma rápida:
@@ -128,17 +123,23 @@ stack<int> s;
 -size(): Retorna a quantidade de elementos atualmente guardados na pilha.
 ```
 
-**lower_bound && upper_bound**
+Quando o enunciado falar ***EOF*** quer dizer que é para usar `while(cin >> x)` até a leitura acabar
+
+**lower_bound && upper_bound puro**
+```cpp
+auto it_upper = upper_bound(dados.begin(), dados.end(), val);
+auto it_lower = lower_bound(dados.begin(), dados.end(), val);
+cout << *it;
 ```
+
+**lower_bound && upper_bound**
+```cpp
 int posicao_inicial = lower_bound(v.begin(), v.end(), x) - v.begin();
 int posicao_final   = upper_bound(v.begin(), v.end(), x) - v.begin();
-cout << posicao_inicial << "," << posicao_final-1 << endl;
-
-fazemos "posicao_final-1" pois o upper retorna um numero/indice maior que o valor alvo entao voltamos uma casa para pegar o valor em si ne, no caso faça isso quando quiser pegar o valor em si e não um maior que ele
 ```
 
 **formula da busca binaria personalizada**
-```
+```cpp
 double low = MIN_POSSIVEL, high = MAX_POSSIVEL;
 
 for (int i = 0; i < 100; i++) { // Loop de precisão fixa
@@ -152,16 +153,6 @@ for (int i = 0; i < 100; i++) { // Loop de precisão fixa
     }
 }
 // No final, 'low' ou 'mid' tem a resposta perfeita.
-```
-
-**formula fatorial**
-```
-n = n * (n-1) * (n-2)...
-fatorial = 1;
-for (int i = x; i > 0; i--) {
-    fatorial *= i;
-}
-//sendo o x o valor a ser fatorado
 ```
 
 **achar o primeiro valor que nao seja x + substr**
@@ -194,7 +185,7 @@ int main() {
 ```
 
 **formula para descobrir se um valor é primo ou nao** 
-```
+```cpp
 bool primo = true;
 if (x <= 1) { primo = false; }
 for (ll i = 2; i * i <= n; i++) { 
@@ -204,6 +195,7 @@ cout << primo << endl;
 
 um numero é primo quando é divisivel somente por um (todo numero) e quando é por ele mesmo (todo numero tambem, ai o n % i, tenta achar algum outro alem dos obvios, se achar é false,e usamos i*i pois, se for maior ja passa do limite, so isso
 ```
+
 
 **mdc (algoritmo de euclides)**
 ```
@@ -215,18 +207,10 @@ std::gcd(std::gcd(x, y), z);
 
 //exemplo
 int resultado = std::gcd(std::gcd(12, 24), 30); // Da 6!
-
-assim seria o gcd por tras 
-while(y!=0) {
-    int r = x % y;
-    x = y;
-    y = r;
-}
-cout << x << endl;
 ```
 
 **mmc**  
-```
+```cpp
 pega o mdc primeiro depois faz a formula abaixo
 (x*y) / mdc;
 
@@ -263,9 +247,19 @@ quando quiser adicionar com base na porcentagem:
 double adicionado = n * %/100;
 ```
 
+| **Limite de N**            | **O que significa (Complexidade)**             | **O que usar no código**                                                              |
+| -------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **$N \le 10$ ou $12$**     | Crescimento brutal (Força bruta)               | Recursão profunda, backtracking ou permutações ($O(N!)$)                              |
+| **$N \le 20$**             | Exponencial ($O(2^N)$)                         | Bitmask (testar subconjuntos) ou recursão                                             |
+| **$N \le 500$**            | Cúbico ($O(N^3)$)                              | Três laços `for` aninhados                                                            |
+| **$N \le 5.000$**          | Quadrático ($O(N^2)$)                          | Dois laços `for` aninhados (comparar pares/matrizes)                                  |
+| **$N \le 10^5$ ou $10^6$** | Linear ou Logarítmico (**Dois loops dão TLE**) | Um único `for` ($O(N)$), ordenação (`sort`) ou `std::map`/`std::set` ($O(N \log N)$)  |
+| **$N \le 10^8$**           | Limite extremo para 1 segundo                  | Um único `for` ultra-simples e leitura rápida (`fast IO`)                             |
+| **$N \le 10^{18}$**        | Número gigantesco (só cabe em `long long`)     | Fórmula direta ($O(1)$) ou divisões sucessivas (Busca Binária / Exponenciação Rápida) |
+
 **os unicos numeros que nao tem divisoes impares sao aqueles que estao na potencia de 2**
 ```
-ex: \(12 = 2 \times 2 \times 3\), olha o 3 aí; \(20 = 2 \times 2 \times 5\)
+ex: \(12 = 2 \times 2 \times 3\), \(20 = 2 \times 2 \times 5\)
 
 formula para ver se um numero e potencia de 2:
 if ((n & (n - 1)) == 0) -> potencia 
@@ -284,25 +278,27 @@ if ((n & 1) == 0)) { par } else { impar }
 isso e mais rapido que usar MOD(%)
 ```
 
+todo final de 5” é 25
+
 ***so e preciso usar chaves({}) quando linha>1*** 
 
 **algoritmo de crivo para pegar todos os numeros primos de 1 ate n**
-```
+```cpp
 int n;
 cin >> n;
 vector<bool> p(n+1, true);
 vector<int> v;
 p[0] = p[1] = false;
-for(int i = 2; i*i <= n; i++)
+for (int i = 2; i*i <= n; i++)
     if (p[i])
         for (int j = i*i; j <= n; j+=i) 
             p[j] = false;
-for(int i = 2; i <= n; i++) 
+for (int i = 2; i <= n; i++) 
     if (p[i]) v.push_back(i);
 ```
 
 **crivo fatorial para pegar numeros quase primos**
-```
+```cpp
 int n,c=0;
 cin >> n;
 vector<int> v(n+1, 0);
@@ -316,12 +312,12 @@ cout << c << endl;
 ```
 
 **lcm para mmc de dois números**
-```
+```cpp
 std::lcm(x, y);
 ```
 
 **para pegar o menor elemento de um vetor e seu indice**
-```
+```cpp
 valor:
 int menor = *min_element(v.begin(), v.end()));
 
@@ -330,9 +326,12 @@ int menor_indice = min_element(v.begin(), v.end()) - v.begin();
 ```
 
 **para fazer uma matriz em c++**
-```
+```cpp
 vector<vector<double>> m(12, vector<double>(12));
 ```
+
+
+matriz vetor: 
 
 **Acima da Diagonal Principal** 
 `for(int j = i + 1; j < N; j++)`
@@ -346,13 +345,126 @@ vector<vector<double>> m(12, vector<double>(12));
 **Abaixo da Diagonal Secundária**
 `for(int j = N - i; j < N; j++)`
 
-**prev pega o penultimo elemento de um vetor**
+**Triângulo Superior:** `j > i` **E** `j < 11 - i`
+**Triângulo Inferior:** `j < i` **E** `j > 11 - i` (que vira o loop `j = 12 - i; j < i`)
+**Triângulo Esquerdo:** `j < i` **E** `j < 11 - i`
+**Triângulo Direito:** `j > i` **E** `j > 11 - i`
+
+**Diagonal Principal**: Vai do canto superior esquerdo ↖️ para o canto inferior direito ↘️ (o desenho "desce" da esquerda para a direita)
+
+**Diagonal Secundária**: Vai do canto superior direito ↗️ para o canto inferior esquerdo ↙️ (o desenho "sobe" da esquerda para a direita).
+```handwritten-ink
+{
+	"versionAtEmbed": "0.3.4",
+	"filepath": "Ink/Writing/2026.6.1 - 10.32am.writing"
+}
 ```
+
+Diagonal Principal
+```cpp
+for(int i = 0; i < 12; i++) {
+    int j = i;
+    s += m[i][j];
+    c++;
+}
+```
+
+Diagonal Secundária
+```cpp
+for(int i = 0; i < 12; i++) {
+    int j = 11 - i;
+    s += m[i][j];
+    c++;
+}
+```
+
+Acima da Diagonal Principal
+```cpp
+for(int i = 0; i < 12; i++) {
+    for(int j = i + 1; j < 12; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Abaixo da Diagonal Principal
+```cpp
+for(int i = 0; i < 12; i++) {
+    for(int j = 0; j < i; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Acima da Diagonal Secundária
+```cpp
+for(int i = 0; i < 11; i++) {
+    for(int j = 0; j < 11 - i; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Abaixo da Diagonal Secundário
+```cpp
+for(int i = 1; i < 12; i++) {
+    for(int j = 12 - i; j < 12; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Triângulo Superior
+```cpp
+for(int i = 0; i <= 4; i++) {
+    for(int j = i + 1; j < 11 - i; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Triângulo Inferior
+```
+for(int i = 7; i < 12; i++) {
+    for(int j = 12 - i; j < i; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Triângulo Esquerdo
+```cpp
+for(int i = 1; i < 11; i++) {
+    for(int j = 0; j < min(i, 11 - i); j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+Triângulo Direito
+```cpp
+for(int i = 1; i < 11; i++) {
+    for(int j = max(i, 11 - i) + 1; j < 12; j++) {
+        s += m[i][j];
+        c++;
+    }
+}
+```
+
+**prev pega o penultimo elemento de um vetor**
+```cpp
 prev(vetor.end());
 ```
 
 **two sum classico**
-```
+```cpp
 for(int i = 0; i < n; i++) {
     for(int j = i + 1; j < n; j++) {
         if(v[j] == t - v[i]) cout << i << j << endl;  
@@ -361,14 +473,14 @@ for(int i = 0; i < n; i++) {
 ```
 
 **eliminar palavras iguais**
-```
+```cpp
 unordered_set<tipo> u(vetor.begin(), vetor.end());
 ```
 
 quando o exercicio tiver limites muitos pequenos sempre teste todas as possibilidades com loops
 
 **loop comparando valor atual com proximo map**
-```
+```cpp
 map<char,int> m={{'A', 1}, {'B', 2}};
 for(auto it = m.begin(); it != m.end(); it++) {
     int proximo = next(it);
@@ -377,7 +489,7 @@ for(auto it = m.begin(); it != m.end(); it++) {
 ```
 
 **pegar o maior ou menor valor de um map ou unordered com lambda**
-```
+```cpp
 auto mm = max_element(m.begin(), m.end(), [](const auto& a, const auto& b) { return a.second < b.second });
 ```
 
@@ -394,6 +506,7 @@ cout << me << endl;
 
 //quem denomina se vai andar ou nao sao as condicoes nao um FOR por exemplo
 ```
+
 
 **x=-x**
 ```cpp
@@ -412,4 +525,4 @@ ou seja, ele ja faz a soma e subtracao dependo do i, se por exemplo o problema f
 s += 10 * 1; 
 s += 5 * (-1); 
 s = 5 //pois (10-5) 5 vira negativo
-```
+`
