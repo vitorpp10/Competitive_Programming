@@ -525,4 +525,9 @@ ou seja, ele ja faz a soma e subtracao dependo do i, se por exemplo o problema f
 s += 10 * 1; 
 s += 5 * (-1); 
 s = 5 //pois (10-5) 5 vira negativo
-`
+```
+
+**multiplicar o tamanho de um vetor**
+```cpp
+for(int i = 0; i < n; i++) v.push_back(v[i]);
+```

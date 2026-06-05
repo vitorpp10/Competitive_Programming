@@ -16,7 +16,7 @@ int main() {
     vector<int> v(n);
     for(int i = 0; i < v.size(); i++) cin >> v[i];
     for(int i = 0; i < v.size(); i++) 
-      for(int j = 0; j < v.size(); j++) 
+      for(int j = i + 1; j < v.size(); j++) 
         if(v[j] == t - v[i]) cout << "[" << i << "," << j << "]" << endl;
     return 0;
 }
