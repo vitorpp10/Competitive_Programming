@@ -297,7 +297,11 @@ for (int i = 2; i <= n; i++)
     if (p[i]) v.push_back(i);
 ```
 
-**crivo fatorial para pegar numeros quase primos**
+*entao basicamente o crivo*
+
+*começa loop de 2, ve se o mulitplo de 2 vai ate se n, se for ele entra no loop e começa a partir de 1 mulitiplo depois dele ou seja 4, e risca todos os multiplos ate n, depois risca o do proximo numero enquanto for menor que n, porque na teoria um primo so é multiplo de 1 e dele mesmo então valor for divisivel por outro, por exemplo 4/2 entao ele nao é primo, por isso ele passa varrendo todos que tem multiplos que sao diferentes de 1 ou dele mesmo*
+
+***crivo fatorial para pegar numeros quase primos**
 ```cpp
 int n,c=0;
 cin >> n;

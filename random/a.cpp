@@ -11,17 +11,12 @@ using namespace std;
 
 int main() {
     fastio;
-    int n,c=0,cc=0,i=0;
-    cin >> n;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
-    for(int i = 0; i < n; i++) v.push_back(v[i]);
-    for(int i = 0; i < v.size(); i++) {
-      if(v[i] == 1) {
-        cc++;
-        if(cc > c) c = cc;
-      } else cc = 0;
+    int t;
+    cin >> t;
+    while(t--) {
+      int p,m,x;
+      cin >> p >> m >> x;
+      cout << min({p,m,((p+m+x)/3)}) << endl;
     }
-    cout << c << endl;
     return 0;
 }
