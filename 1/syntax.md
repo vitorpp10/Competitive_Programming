@@ -245,6 +245,14 @@ double descontado = n/100 * %;
 
 quando quiser adicionar com base na porcentagem:
 double adicionado = n * %/100;
+
+quando quiser a porcentagem de algo com base com y ganho, exemplo:
+salario fixo: 500;
+bonus de vendas feitas: 1200 vendas;
+para adicionar o bonus em porcentagem faça:
+500/1200 * 100;
+ou seja:
+double com_bonus = n/b * 100;
 ```
 
 | **Limite de N**            | **O que significa (Complexidade)**             | **O que usar no código**                                                              |
@@ -267,7 +275,7 @@ if ((n & (n - 1)) == 0) -> potencia
 como isso funciona por baixo dos panos supondo n = 8:
 8 em binario e 1000
 7 em binario e 0111 
-isso da = 0000 que é 0, exatamente oque o if acima pede, porém isso so funciona para potência de 2, porque um numero que e potencia de 2 seu antecessor em binario vai ser o contrariodele, ou seja, vai dar 0 significando que é uma potencia de 2
+isso da = 0000 que é 0, exatamente oque o if acima pede, porém isso so funciona para potência de 2, porque um numero que e potencia de 2 seu antecessor em binario vai ser o contrario dele, ou seja, vai dar 0 significando que é uma potencia de 2
 ```
 
 **descobrir se um numero e impar ou par de forma mais rapida**
@@ -286,14 +294,14 @@ todo final de 5” é 25
 ```cpp
 int n;
 cin >> n;
-vector<bool> p(n+1, true);
+vector<bool> p(n, true);
 vector<int> v;
 p[0] = p[1] = false;
-for (int i = 2; i*i <= n; i++)
+for (int i = 2; i*i < n; i++)
     if (p[i])
-        for (int j = i*i; j <= n; j+=i) 
+        for (int j = i*i; j < n; j+=i) 
             p[j] = false;
-for (int i = 2; i <= n; i++) 
+for (int i = 2; i < n; i++) 
     if (p[i]) v.push_back(i);
 ```
 
@@ -534,4 +542,33 @@ s = 5 //pois (10-5) 5 vira negativo
 **multiplicar o tamanho de um vetor**
 ```cpp
 for(int i = 0; i < n; i++) v.push_back(v[i]);
+```
+
+**contar a maior frequencia de um numero em um map** 
+```cpp
+int maior = 0;
+for(int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    m[x]++;
+    maior = max(maior, m[x]); troca o maior a cada rodada;
+}
+cout << maior << endl;.
+```
+
+**round**
+```cpp
+transforma numeros de ponto flutuante em inteiros mais proximos de forma segura
+
+int n = 576.64;
+int r = round(n * 100); 
+```
+
+**0 truque do + (resto != 0)**
+```cpp
+Quando dividimos inteiros e queremos arredondar para cima caso sobre qualquer resto, somamos a própria pergunta lógica:
+C++
+resposta = (total / divisor) + (total % divisor != 0);
+Se sobrar resto, a pergunta vira 1 (soma o passo extra).
+Se não sobrar, a pergunta vira 0 (não altera o resultado).  
 ```

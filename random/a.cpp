@@ -11,12 +11,8 @@ using namespace std;
 
 int main() {
     fastio;
-    int t;
-    cin >> t;
-    while(t--) {
-      int p,m,x;
-      cin >> p >> m >> x;
-      cout << min({p,m,((p+m+x)/3)}) << endl;
-    }
+    int n;
+    cin >> n;
+    cout << (n/5)+(n%5!=0) << endl;
     return 0;
 }
