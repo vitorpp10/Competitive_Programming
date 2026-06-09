@@ -572,3 +572,38 @@ resposta = (total / divisor) + (total % divisor != 0);
 Se sobrar resto, a pergunta vira 1 (soma o passo extra).
 Se não sobrar, a pergunta vira 0 (não altera o resultado).  
 ```
+
+**distancia de manhattan**
+```cpp
+formula para calcular quantas linhas e colunas um x precisa andar para chegar a y;
+abs(linha - linha_chegada) + abs(coluna - coluna_chegada);
+usamos valor absoluto(abs), pois sempre retorna uma valor positivo, como o foco é na distância até algo, então usamos valor absoluto
+```
+
+**transforma um caracterer todo em minusculo**
+```cpp
+string s = "texto";
+std::transform(texto.begin(), texto.end(), texto.begin(), ::tolower);
+
+transform = percorre string toda fazendo algo
+tolower = transforma char em minusculo, ou seja, letra por letra
+```
+
+**transformar um caracterer todo em maiusculo**
+```cpp
+string s = "texto";
+std::transform(texto.begin(), texto.end(), texto.begin(), ::toupper);
+```
+
+**macete para MOD com numeros negativos nao dar erro**
+```cpp
+cout << ((x - y) % z + z) % z << endl;
+```
+
+**formula de gauss**
+se uma questão falar de acumulação, exemplo:
+*"Um atleta corre 1 km no primeiro dia, 2 km no segundo, 3 km no terceiro... quantos km ele correu apos D dias?"*
+deve-se usar a formula de gauss que diz o seguinte, se voce somar os numeros em pares, primeiro com ultimo, segundo com penultimo etc, eles sempre vao dar o mesmo resultado final, ou seja, se fizer, 1 + final, sempre vai ser a resposta pra soma de 1 a n. Com isso depois descobre quantos pares da pra fazer, para pegar isso deve dividir n/2com isso voce consegue saber a soma de 1 a n, com a formula:
+```
+long long gauss = total + (total*1) / 2
+```
