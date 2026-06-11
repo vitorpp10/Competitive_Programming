@@ -127,7 +127,6 @@ Quando o enunciado falar ***EOF*** quer dizer que é para usar `while(cin >> x)`
 
 **lower_bound && upper_bound puro**
 ```cpp
-auto it_upper = upper_bound(dados.begin(), dados.end(), val);
 auto it_lower = lower_bound(dados.begin(), dados.end(), val);
 cout << *it;
 ```
@@ -579,6 +578,10 @@ std::transform(texto.begin(), texto.end(), texto.begin(), ::toupper);
 cout << ((x - y) % z + z) % z << endl;
 ```
 
+**macete MOD positivo 2 numeros**
+```cpp
+int mod = ((x % y) + y) % y;
+```
 
 **formula de gauss**
 se uma questão falar de acumulação, exemplo:
