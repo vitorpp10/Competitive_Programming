@@ -1,4 +1,4 @@
-usar `while(t--)` sempre que o exercicio pedir n casos de forma isolada
+sar `while(t--)` sempre que o exercicio pedir n casos de forma isolada
 
 minha snippet: 
 ```cpp
@@ -252,7 +252,7 @@ bonus de vendas feitas: 1200 vendas;
 para adicionar o bonus em porcentagem faça:
 500/1200 * 100;
 ou seja:
-double com_bonus = n/b * 100;
+	double com_bonus = n/b * 100;
 ```
 
 | **Limite de N**            | **O que significa (Complexidade)**             | **O que usar no código**                                                              |
@@ -275,7 +275,7 @@ if ((n & (n - 1)) == 0) -> potencia
 como isso funciona por baixo dos panos supondo n = 8:
 8 em binario e 1000
 7 em binario e 0111 
-isso da = 0000 que é 0, exatamente oque o if acima pede, porém isso so funciona para potência de 2, porque um numero que e potencia de 2 seu antecessor em binario vai ser o contrario dele, ou seja, vai dar 0 significando que é uma potencia de 2
+isso da = 0000 que é 0, exatamente oque o if acima pede, porém isso so funciona para potência de 2, porque um numero que e potencia de 2 seu antecessor em binario vai ser o contrariodele, ou seja, vai dar 0 significando que é uma potencia de 2
 ```
 
 **descobrir se um numero e impar ou par de forma mais rapida**
@@ -294,14 +294,14 @@ todo final de 5” é 25
 ```cpp
 int n;
 cin >> n;
-vector<bool> p(n, true);
+vector<bool> p(n+1, true);
 vector<int> v;
 p[0] = p[1] = false;
-for (int i = 2; i*i < n; i++)
+for (int i = 2; i*i <= n; i++)
     if (p[i])
-        for (int j = i*i; j < n; j+=i) 
+        for (int j = i*i; j <= n; j+=i) 
             p[j] = false;
-for (int i = 2; i < n; i++) 
+for (int i = 2; i <= n; i++) 
     if (p[i]) v.push_back(i);
 ```
 
@@ -309,7 +309,7 @@ for (int i = 2; i < n; i++)
 
 *começa loop de 2, ve se o mulitplo de 2 vai ate se n, se for ele entra no loop e começa a partir de 1 mulitiplo depois dele ou seja 4, e risca todos os multiplos ate n, depois risca o do proximo numero enquanto for menor que n, porque na teoria um primo so é multiplo de 1 e dele mesmo então valor for divisivel por outro, por exemplo 4/2 entao ele nao é primo, por isso ele passa varrendo todos que tem multiplos que sao diferentes de 1 ou dele mesmo*
 
-***crivo fatorial para pegar numeros quase primos**
+**crivo fatorial para pegar numeros quase primos**
 ```cpp
 int n,c=0;
 cin >> n;
@@ -539,38 +539,10 @@ s += 5 * (-1);
 s = 5 //pois (10-5) 5 vira negativo
 ```
 
+
 **multiplicar o tamanho de um vetor**
 ```cpp
 for(int i = 0; i < n; i++) v.push_back(v[i]);
-```
-
-**contar a maior frequencia de um numero em um map** 
-```cpp
-int maior = 0;
-for(int i = 0; i < n; i++) {
-    int x;
-    cin >> x;
-    m[x]++;
-    maior = max(maior, m[x]); troca o maior a cada rodada;
-}
-cout << maior << endl;.
-```
-
-**round**
-```cpp
-transforma numeros de ponto flutuante em inteiros mais proximos de forma segura
-
-int n = 576.64;
-int r = round(n * 100); 
-```
-
-**0 truque do + (resto != 0)**
-```cpp
-Quando dividimos inteiros e queremos arredondar para cima caso sobre qualquer resto, somamos a própria pergunta lógica:
-C++
-resposta = (total / divisor) + (total % divisor != 0);
-Se sobrar resto, a pergunta vira 1 (soma o passo extra).
-Se não sobrar, a pergunta vira 0 (não altera o resultado).  
 ```
 
 **distancia de manhattan**
@@ -580,6 +552,13 @@ abs(linha - linha_chegada) + abs(coluna - coluna_chegada);
 usamos valor absoluto(abs), pois sempre retorna uma valor positivo, como o foco é na distância até algo, então usamos valor absoluto
 ```
 
+```handwritten-ink
+{
+	"versionAtEmbed": "0.3.4",
+	"filepath": "Ink/Writing/2026.6.9 - 15.10pm.writing"
+}
+```
+	
 **transforma um caracterer todo em minusculo**
 ```cpp
 string s = "texto";
@@ -600,10 +579,29 @@ std::transform(texto.begin(), texto.end(), texto.begin(), ::toupper);
 cout << ((x - y) % z + z) % z << endl;
 ```
 
+
 **formula de gauss**
 se uma questão falar de acumulação, exemplo:
 *"Um atleta corre 1 km no primeiro dia, 2 km no segundo, 3 km no terceiro... quantos km ele correu apos D dias?"*
-deve-se usar a formula de gauss que diz o seguinte, se voce somar os numeros em pares, primeiro com ultimo, segundo com penultimo etc, eles sempre vao dar o mesmo resultado final, ou seja, se fizer, 1 + final, sempre vai ser a resposta pra soma de 1 a n. Com isso depois descobre quantos pares da pra fazer, para pegar isso deve dividir n/2com isso voce consegue saber a soma de 1 a n, com a formula:
-```
+deve-se usar a formula de gauss que diz o seguinte, se voce somar os numeros em pares, primeiro com ultimo, segundo com penultimo etc, eles sempre vao dar o mesmo resultado final, ou seja, se fizer, 1 + final, sempre vai ser a resposta pra soma de 1 a n. Com isso depois descobre quantos pares da pra fazer, para pegar isso deve dividir n/2 com isso voce consegue saber a soma de 1 a n, com a formula:
+```cpp
 long long gauss = total + (total*1) / 2
+```
+```handwritten-ink
+{
+	"versionAtEmbed": "0.3.4",
+	"filepath": "Ink/Writing/2026.6.9 - 18.55pm.writing"
+}
+```
+
+**apagar todas as ocorrências de um caractere** 
+```cpp
+string s = "t-e-x-t-o";
+s.erase(remove(s.begin(), s.end(), '-'), s.end());
+```
+
+**adicionar mais de um elemento de uma vez vetor**
+```cpp
+vector<int> v={10, 20};
+v.insert(v.end(), {30,40,50});
 ```
