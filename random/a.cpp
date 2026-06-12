@@ -12,7 +12,8 @@ using namespace std;
 
 int main() {
     fastio;
-    int x,y;
-    while(cin >> x >> y) cout << (x * y) * 2 << endl;
+    int n;
+    cin >> n;
+    if((n & 1) == 0 && n > 2) cout << "YES" << endl; else cout << "NO" << endl;
     return 0;
 }
