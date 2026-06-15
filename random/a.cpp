@@ -12,8 +12,13 @@ using namespace std;
 
 int main() {
     fastio;
-    int n;
-    cin >> n;
-    if((n & 1) == 0 && n > 2) cout << "YES" << endl; else cout << "NO" << endl;
+    int tt;
+    cin >> tt;
+    while(tt--) {
+      string s;
+      cin >> s;
+      transform(s.begin(), s.end(), s.begin(), ::tolower);
+      if(s == "yes") cout << "YES" << endl; else cout << "NO" << endl;
+    }
     return 0;
 }
