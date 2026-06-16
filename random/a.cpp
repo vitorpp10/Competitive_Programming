@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdio>
 
 #define ll long long 
 #define fastio \
@@ -15,10 +14,16 @@ int main() {
     int tt;
     cin >> tt;
     while(tt--) {
-      string s;
-      cin >> s;
-      transform(s.begin(), s.end(), s.begin(), ::tolower);
-      if(s == "yes") cout << "YES" << endl; else cout << "NO" << endl;
+        int n,v,a;
+        cin >> n >> v >> a;
+        set<pair<int,int>> p;
+        for(int i = 0; i < a; i++) {
+            int x,y;
+            cin >> x >> y;
+            if(x > y) swap(x,y);
+            p.insert({x,y});
+        }
+        cout << p.size() * 2 << endl;
     }
     return 0;
 }
