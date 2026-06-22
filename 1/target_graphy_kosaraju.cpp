@@ -9,9 +9,9 @@
 
 using namespace std;
 
-void dfs(int u, vector<vector<int>>& v, vector<bool>& t) {
-  t[u] = true;
-  for(int i : v[u]) if(!t[i]) dfs(i, v, t);
+void dfs(int in, vector<vector<int>>& v, vector<bool>& t) {
+  t[in] = true;
+  for(int i : v[in]) if(!t[i]) dfs(i, v, t);
 }
 
 int main() {
@@ -39,11 +39,9 @@ int main() {
     dfs(1, v1, t1);
     dfs(1, v2, t2);
     int r = 1;
-    for(int i = 1; i <= n; i++) 
-      if(t1[i] == false || t2[i] == false) r = 0;
+    for(int i = 0; i < n; i++) if(t1[i] == 0 || t2[i] == 0) r = 0;
     cout << r << endl;
     cin >> n >> m;
   }
   return 0;
 }
-
