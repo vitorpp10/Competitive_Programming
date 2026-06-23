@@ -16,7 +16,7 @@ int main() {
     vector<vector<int>> v;
     for(int i = 0; i < n; i++) {
       vector<int> vv(2);
-      for(int i = 0; i < vv.size(); i++) cin >> vv[i];
+      for(int j = 0; j < n; j++) cin >> vv[j];
       v.push_back(vv);
     }
     /*
