@@ -39,7 +39,7 @@ int main() {
     dfs(1, v1, t1);
     dfs(1, v2, t2);
     int r = 1;
-    for(int i = 0; i < n; i++) 
+    for(int i = 1; i <= n; i++) 
       if(t1[i] == false || t2[i] == false) r = 0;
     cout << r << endl;
     cin >> n >> m;
