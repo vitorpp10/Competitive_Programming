@@ -11,26 +11,27 @@ using namespace std;
 
 const ll INF = 1e18;
 
-vector<int> dijkstra(int a, int& n, vector<vector<pair<int,int>>>& graph) {
-    vector<ll> dist(n, INF);
+vector<int> dijkstra(int o, int& n, vector<vector<pair<int,int>>>& g) {
+    vector<ll> d(n, INF);
     vector<int> p(n, -1);
     priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> q;
-    dist[a] = 0;
-    q.push({0, a});
+    d[o] = 0;
+    q.push({0, o});
     while(!q.empty()) {
         ll w = q.top().first;
-        int aa = q.top().second;
+        int cw = q.top().second;
         q.pop();
-        if(w > dist[aa]) continue;
-        for(auto& v : graph[aa]) {
+        if(w > d[cw]) continue;
+        for(auto& v : g[cw]) {
             int pv = v.first;
             int cv = v.second;
-            if(dist[cv] > dist[aa] + pv) {
-                dist[cv] = dist[aa] + pv;
-                p[cv] = aa;
-                q.push({dist[cv], cv});
+            if(d[cv] > d[cw] + pv) {
+                d[cv] = d[cw] + pv;
+                p[cv] = cw;
+                q.push({d[cv], cv});
             }
         }
+
     }
     return p;
 }
@@ -39,15 +40,15 @@ int main() {
     fastio;
     int n,m;
     cin >> n >> m;
-    vector<vector<pair<int,int>>> graph(n);
+    vector<vector<pair<int,int>>> g(n);
     for(int i = 0; i < m; i++) {
         int a,b,c;
         cin >> a >> b >> c, a--, b--;
-        graph[a].push_back({c, b});
-        graph[b].push_back({c, a});
+        g[a].push_back({c,b});
+        g[b].push_back({c,a});
     }
-    vector<int> r = dijkstra(0,n,graph);
-    if(r[n-1] == -1) cout << -1 << endl;
+    vector<int> r = dijkstra(0,n,g);
+    if(r[n-1] == -1) cout << -1 << endl; 
     else {
         vector<int> rr;
         int t = n-1;
@@ -55,7 +56,6 @@ int main() {
             rr.push_back(t);
             t = r[t];
         }
-        reverse(rr.begin(), rr.end());
         for(const auto& rrr : rr) cout << rrr+1 << " ";
     }
     return 0;
