@@ -56,6 +56,7 @@ int main() {
             rr.push_back(t);
             t = r[t];
         }
+        reverse(rr.begin(), rr.end());
         for(const auto& rrr : rr) cout << rrr+1 << " ";
     }
     return 0;

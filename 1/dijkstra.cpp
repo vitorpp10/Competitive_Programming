@@ -27,7 +27,7 @@ vector<int> dijkstra(int o, int& n, vector<vector<pair<int,int>>>& g) {
             int cv = v.second;
             if(d[cv] > d[cw] + pv) {
                 d[cv] = d[cw] + pv;
-                p[cw] = o;
+                p[cv] = cw;
                 q.push({d[cv], cv});
             }
         }
@@ -45,7 +45,7 @@ int main() {
         int a, b, c;
         cin >> a >> b >> c, a--, b--; //a-- and b-- to increase 0 to 1 
         g[a].push_back({c,b});
-        g[a].push_back({c,a});
+        g[b].push_back({c,a});
     }
     vector<int> r = dijkstra(0,n,g);
     if(r[n-1] == -1) cout << -1 << endl; 
@@ -56,6 +56,7 @@ int main() {
             rr.push_back(t);
             t = r[t];
         }
+        reverse(rr.begin(), rr.end());
         //rrr+1 because questions requires 1 + n;
         for(const auto& rrr : rr) cout << rrr+1 << " ";
     }
