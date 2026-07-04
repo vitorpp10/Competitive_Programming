@@ -9,47 +9,27 @@
 
 using namespace std;
 
-const int INF = 1e9;
-
-int dj(int& o, int& n, vector<vector<pair<int,int>>>& times) {
-    vector<int> d(n, INF);
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
-    d[o] = 0;
-    q.push({0,o});
-    while(q.size() > 0) {
-        int w = q.top().first;
-        int cw = q.top().second;
-        q.pop();
-        if(w > d[cw]) continue;
-        for(auto& v : times[cw]) {
-            int pv = v.first;
-            int cv = v.second;
-            if(d[cv] > d[cw] + pv) {
-                d[cv] = d[cw] + pv;
-                q.push({d[cv], cv});
-            }
-        }
-    }
-    auto it = max_element(d.begin(), d.end());
-    bool t = false;
-    for(const int& dd : d) if(dd == 1e9) t = true;
-    if(t) return -1;
-    else return *it;
-}
-
 int main() {
     fastio;
-    int n,m;
-    cin >> n >> m;
-    vector<vector<pair<int,int>>> times(n);
-    for(int i = 0; i < m; i++) {
-        int ui,vi,wi;
-        cin >> ui >> vi >> wi, ui--, vi--;
-        times[ui].push_back({wi,vi});
+    int in,end,room=0;
+    vector<int> vin;
+    vector<int> vend;
+    while(cin >> in >> end) {
+        vin.push_back(in);
+        vend.push_back(end);
     }
-    int k;
-    cin >> k, k--;
-    int r = dj(k,n,times);
-    cout << r << endl;
-    return 0;
+    //two pointer cl 
+    sort(vin.begin(), vin.end());
+    sort(vend.begin(), vend.end());
+    int i = 0, j = 0;
+    while(i < vin.size() && j < vend.size()) {
+        if(vend[j] > vin[i]) {
+            room++;
+            i++;
+        } else {
+            room--;
+            j++;
+        }
+    }
+    cout << room << endl;
 }
