@@ -702,3 +702,8 @@ O algoritmo de dijkstra não funciona com arestas negativas ja que poderia influ
 `Backtracking`: Guarda o caminho com menor custo por onde passou e depois inverte, para saber oque percorreu e como voltar 
 `Inicialização de estados`: Começar uma aresta não explorada com custo infinito 
 `Guloso(Greedy)`: Algoritmos que não funcionam com variáveos/arestas negativas 
+
+`using`: Tipo do c++ que serve para importar `namespaces`, resolução de conflitos 1
+
+`tuple`: Igual `pair`, porém aceita quantos termos quiser:
+`using Estado = tuple<int,int,int>;`

@@ -9,7 +9,7 @@
 using namespace std;
 
 double dj(int& s, int& e, vector<vector<pair<double,double>>>& edges) {
-    vector<double> distance(edges.size(), -1);
+    vector<double> distance(edges.size(), 0.0);
     priority_queue<pair<double,double>, vector<pair<double,double>>> q;
     distance[s] = 1;
     q.push({1, s});
