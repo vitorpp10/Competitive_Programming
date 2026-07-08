@@ -707,3 +707,16 @@ O algoritmo de dijkstra não funciona com arestas negativas ja que poderia influ
 
 `tuple`: Igual `pair`, porém aceita quantos termos quiser:
 `using Estado = tuple<int,int,int>;`
+
+`Grafos Bipartidos`: Grafos dividos em 2 ou mais partes em pares. Por exemplo, um programa pede para dividir as pessoas em time azul e vermelho, o nó 0 comeca sendo pintado de vermelho. Automáticamente seus vizinhos devem ser azuis, pois dois vertices grudados não podem ser da mesma cor. A mátematica para o preenchimento de cores é: 
+
+*Se a cor atual é 0(vermelho): 1-0 = 1(vira azul)*
+*Se a cor atual é 1(azul): 1-1 = 0(vira vermelho)* 
+
+E assim vai preenchendo o grafo até ele se completar. O grafo deixa de ser bipartido a partir do momento que a cor do vizinho dele é igual a cor do nó em que o user está posicionado atualmente. Um grafo nõa pode ter ciclos de tamanhos ímpares, pois se o user pintar nós de times diferentes o ultimo sempre vai ser da mesma cor de um ou outro, quebrando a regra de um grafo bipartido 
+
+`Monstro de Cthulhu`: Seja *N* o número de vértices e *E* o número de arestas:
+`Se E = N-1`: O grafo é uma árvore, ou seja, todo mundo se conecta mas não existe nenhum ciclo fechado, se sair qualquer arestas quebra o grafo inteiro 
+`Se E = N`: O grafo ganhou uma aresta extra onde essa única aresta cria mais um ciclo. Esse grafo é chamado de *Unicíclico*
+
+

@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
-#define fastio                        \
+#define ll long long
+#define fastio \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL)
 
@@ -8,21 +9,34 @@
 
 using namespace std;
 
-const int INF = 1e9;
-
-int bfs(int x, int y, int xf, int yf, vector<vector<int>>& g) {
-    vector<int> d(g.size(), INF);
-    priority_queue<>
+string fh(int o, vector<vector<int>>& g) {
+    vector<int> vi(g.size());
+    queue<int> q;
+    vi[o] = 0;
+    q.push(o);
+    while(q.size() > 0) {
+        int at = q.front();
+        q.pop();
+        vi[at]++;
+        
+    }
 }
 
 int main() {
     fastio;
     int n,m;
     cin >> n >> m;
-    vector<vector<int>> g(n, vector<int>(m));
-    for(int i = 0; i < n; i++)
-        for(int j = 0; j < m; j++) cin >> g[i][j];
-    int r = bfs(0,0, n-1,m-1, g);
-    cout << r << endl;
+    if(n!=m) cout << "NO" << endl;
+    else {
+        vector<vector<int>> g(n);
+        for(int i = 0; i < m; i++) {
+            int u,v;
+            cin >> u >> v;
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+        string r = fh(0,g);
+        cout << r << endl;
+    }
     return 0;
 }
