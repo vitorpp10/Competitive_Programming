@@ -13,8 +13,8 @@ int main() {
     fastio;
     int n,e;
     cin >> n >> e;
-    if(e == n-1) cout << "ARVORE" << endl;
-    else if(e == n) cout << "MONSTRO" << endl;
-    else cout << "DESCONHECIDO" << endl;
+    if(e == n-1) cout << "TREE" << endl;
+    else if(e == n) cout << "MONSTER" << endl;
+    else cout << "ANONYMOUS" << endl;
     return 0;
 }
