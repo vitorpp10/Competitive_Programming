@@ -1,3 +1,4 @@
+//1 count cp 
 #include <bits/stdc++.h>
 
 #define ll long long
@@ -11,10 +12,6 @@ using namespace std;
 
 int main() {
     fastio;
-    int n,e;
-    cin >> n >> e;
-    if(e == n-1) cout << "ARVORE" << endl;
-    else if(e == n) cout << "MONSTRO" << endl;
-    else cout << "DESCONHECIDO" << endl;
+
     return 0;
 }

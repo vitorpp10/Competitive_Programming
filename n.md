@@ -719,4 +719,4 @@ E assim vai preenchendo o grafo até ele se completar. O grafo deixa de ser bipa
 `Se E = N-1`: O grafo é uma árvore, ou seja, todo mundo se conecta mas não existe nenhum ciclo fechado, se sair qualquer arestas quebra o grafo inteiro 
 `Se E = N`: O grafo ganhou uma aresta extra onde essa única aresta cria mais um ciclo. Esse grafo é chamado de *Unicíclico*
 
-
+`.resize()`: serve para adicionar um novo tamanho a um vetor ou string por exemplo, diminuir seu tamanho, ou adicionar valores prefixos
