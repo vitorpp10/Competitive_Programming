@@ -104,4 +104,55 @@ int main() {
     cout << "impossible" << endl;
     return 0;
 }
+
+
+
+3:
+
+#include <bits/stdc++.h>
+
+#define ll long long
+#define fastio \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL)
+
+#define endl "\n"
+
+using namespace std;
+
+int dx[]={-1, -1, -1, 0, 0, 1, 1, 1};
+int dy[]={-1, 0, 1, -1, 1, -1, 0, 1};
+
+int main() {
+    fastio;
+    int n,m,x,y;
+    cin >> n >> m >> x >> y;
+    vector<vector<int>> g(n, vector<int>(m));
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++) cin >> g[i][j];
+    queue<pair<int,int>> q;
+    vector<vector<bool>> t(g.size(), vector<bool>(g[0].size(), false));
+    vector<vector<int>> d(g.size(), vector<int>(g[0].size(), -1));
+    d[x][y] = 1;
+    t[x][y] = true;
+    q.push({x,y});
+    while(q.size() > 0) {
+        pair<int,int> at = q.front();
+        q.pop();
+        for(int i = 0; i < 8; i++) {
+            int nx = at.first + dx[i];
+            int ny = at.second + dy[i];
+            if(nx >= 0 && ny >= 0 && nx < g.size() && ny < g[0].size() && !t[nx][ny] && g[nx][ny] == 1 && d[nx][ny] == -1) {
+                d[nx][ny] = d[at.first][at.second]+1;
+                t[nx][ny] = true;
+                q.push({nx,ny});
+            }
+        }
+    }
+    int mm = d[0][0];
+    for(int i = 0; i < d.size(); i++)
+        for(int j = 0; j < d[0].size(); j++) if(d[i][j] > mm) mm = d[i][j];
+    cout << mm << endl;
+    return 0;
+}
  * */

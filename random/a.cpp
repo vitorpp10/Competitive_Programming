@@ -1,4 +1,3 @@
-//1 count cp AYRA'
 #include <bits/stdc++.h>
 
 #define ll long long
@@ -10,39 +9,77 @@
 
 using namespace std;
 
-int dx[]={-1,1,0,0};
-int dy[]={0,0,-1,1};
+const int INF = 1e9;
 
 int main() {
     fastio;
-    //police && thief 4 directions fill
-    int n,m;
+    int n,m,a,b,c;
     cin >> n >> m;
-    vector<vector<char>> g(n, vector<char>(m));
-    for(int i = 0; i < n; i++)
-        for(int j = 0; j < m; j++) cin >> g[i][j];
-    queue<pair<int,int>> q;
-    vector<vector<int>> d(g.size(), vector<int>(g[0].size(), -1));
-    d[0][0] = 0;
-    q.push({0,0});
-    while(q.size() > 0) { 
-        pair<int,int> at = q.front();
-        q.pop();
-        if(at.first == 0 && at.second == 4) {
-            cout << d[at.first][at.second] << endl;
-            return EXIT_SUCCESS;
-        }
-        for(int i = 0; i < 4; i++) {
-            int nx = at.first + dx[i];
-            int ny = at.second + dy[i];
-            if(nx >= 0 && ny >= 0 && nx < g.size() && ny < g[0].size() && d[nx][ny] == -1) {
-                if(g[nx][ny] == '.' || g[nx][ny] == 'L') {
-                    d[nx][ny] = d[at.first][at.second]+1;
-                    q.push({nx,ny});
-                }
+    vector<vector<pair<int,int>>> g(n);
+    for(int i = 0; i < m; i++) {
+        int u,v,l;
+        cin >> u >> v >> l, u--,v--;
+        g[u].push_back({l,v});
+        g[v].push_back({l,u});
+    }
+    cin >> a >> b >> c;
+    vector<int> d1(g.size(), INF);
+    vector<int> d2(g.size(), INF);
+    vector<int> p1(g.size(), -1);
+    vector<int> p2(g.size(), -1); 
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q1;
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q2;
+    d1[a] = 0;
+    d2[b] = 0;
+    q1.push({0,a});
+    q2.push({0,b});
+    while(q1.size() > 0) {
+        int w1 = q1.top().first;
+        int cw1 = q1.top().second;
+        q1.pop();
+        if(w1 > d1[cw1]) continue;
+        for(auto& v1 : g[cw1]) {
+            int pv1 = v1.first;
+            int cv1 = v1.second;
+            if(d1[cv1] > d1[cw1]+pv1) {
+                d1[cv1] = d1[cw1]+pv1;
+                p1[cv1] = cw1;
+                q1.push({d1[cv1], cv1});
             }
         }
     }
-    cout << "impossible" << endl;
+    while(q2.size() > 0) {
+        int w2 = q2.top().first;
+        int cw2 = q2.top().second;
+        q2.pop();
+        if(w2 > d2[cw2]) continue;
+        for(auto& v2 : g[cw2]) {
+            int pv2 = v2.first;
+            int cv2 = v2.second;
+            if(d2[cv2] > d2[cw2]+pv2) {
+                d2[cv2] = d2[cw2]+pv2;
+                p2[cv2] = cw2;
+                q2.push({d2[cv2], cv2});
+            }
+        }
+    }
+    if(p1[n-1] == -1 || p2[n-1] == -1) cout << -1 << endl; 
+    else {
+        vector<int> rp1;
+        vector<int> rp2;
+        int tt1 = n-1;
+        int tt2 = n-1;
+        while(tt1 != -1) {
+            rp1.push_back(tt1);
+            tt1 = p1[tt1];
+        }
+        while(tt2 != -1) {
+            rp2.push_back(tt2);
+            tt2 = p2[tt2];
+        }
+        ll s1 = accumulate(rp1.begin(), rp1.end(), 0LL);
+        ll s2 = accumulate(rp2.begin(), rp2.end(), 0LL);
+        cout << s1+s2 << endl;
+    }
     return 0;
 }
