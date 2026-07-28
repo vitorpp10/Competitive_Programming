@@ -1,8 +1,7 @@
 /* 
-
-1: 
-        
-#include <bits/stdc++.h>
+ *  1: 
+ *
+ *  #include <bits/stdc++.h>
 
 #define ll long long
 #define fastio \
@@ -13,60 +12,52 @@
 
 using namespace std;
 
-vector<int> bfs(int& a, int& b, vector<vector<int>>& g) {
-    queue<int> q;
-    vector<int> d(g.size(), -1);
-    vector<bool> bb(g.size(), false);
-    bb[a] = true;
-    q.push(a);
+int dx[]={-1,1,0,0};
+int dy[]={0,0,-1,1};
+
+void F(int& x, int& y, vector<vector<int>>& g) {
+    queue<pair<int,int>> q;
+    g[x][y] = 2;
+    q.push({x,y});
     while(q.size() > 0) {
-        int at = q.front();
+        pair<int,int> at = q.front();
         q.pop();
-        for(int& v : g[at]) {
-            if(!bb[v]) {
-                bb[v] = true;
-                d[v] = at;
-                q.push(v);
-            }
-        } 
+        for(int i = 0; i < 4; i++) {
+            int nx = at.first + dx[i];
+            int ny = at.second + dy[i];
+            if(nx >= 0 && ny >= 0 && nx < g.size() && ny < g[0].size() && g[nx][ny] == 1) {
+                g[nx][ny] = 2;
+                q.push({nx,ny});
+            } 
+        }
     }
-    return d;
-} 
+    for(int i = 0; i < g.size(); i++) {
+        for(int j = 0; j < g[0].size(); j++) {
+            cout << g[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
 
 int main() {
     fastio;
+    //fill 4 directions
     int n,m;
     cin >> n >> m;
-    vector<vector<int>> g(n);
-    for(int i = 0; i < m; i++) {
-        int u,v;
-        cin >> u >> v;
-        g[u].push_back(v);
-    }
-    int a,b;
-    cin >> a >> b;
-    vector<int> r = bfs(a,b,g);
-    if(r[b] == -1) return 1;
-    else {
-        vector<int> rr;
-        int t = g.size()-1;
-        while(t != -1) {
-            rr.push_back(t);
-            t = r[t];
-        }
-        reverse(rr.begin(), rr.end());
-        cout << "size: " << rr.size() << endl;
-        cout << "final vector: ";
-        for(const int& rrr : rr) cout << rrr << " ";
-    }
+    vector<vector<int>> g(n, vector<int>(m));
+    int x,y;
+    cin >> x >> y;
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++) cin >> g[i][j]; 
+    F(x,y,g);
     return 0;
 }
-*/ 
-
-/* 
- * 2:
  *
- * #include <bits/stdc++.h>
+ *
+ *
+ * 2: 
+ *
+ *   #include <bits/stdc++.h>
 
 #define ll long long
 #define fastio \
@@ -77,95 +68,40 @@ int main() {
 
 using namespace std;
 
-const ll INF = 1e18;
-
-vector<ll> dj(int& o, int& of, vector<vector<pair<int,int>>>& g) {
-    vector<ll> d(g.size(), INF);
-    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> q;
-    d[o] = 0;
-    q.push({0, o});
-    while(q.size() > 0) {
-        ll w = q.top().first;
-        int cw = q.top().second;
-        q.pop();
-        if(w > d[cw]) continue;
-        for(auto& v : g[cw]) {
-            ll pv = v.first;
-            int cv = v.second;
-            if(d[cv] > d[cw] + pv) {
-                d[cv] = d[cw] + pv;
-                q.push({d[cv], cv});
-            }
-        }
-    }
-    return d;
-}
+int dx[]={-1,1,0,0};
+int dy[]={0,0,-1,1};
 
 int main() {
     fastio;
+    //police && thief 4 directions fill
     int n,m;
     cin >> n >> m;
-    vector<vector<pair<int,int>>> g(n);
-    for(int i = 0; i < m; i++) {
-        int u,v,l;
-        cin >> u >> v >> l;
-        g[u].push_back({l,v});
-    }
-    int a,b;
-    cin >> a >> b;
-    vector<ll> r = dj(a,b,g);
-    cout << r[b] << endl;
-    // ou 
-     *
-     *  cout << r[g.size()-1] << endl; porem acho mais sentido ser b ne, ja que ele e o destino
-    return 0;
-}
- * 
- *
- *
- * 3:
- *
- *#include <bits/stdc++.h>
-
-#define ll long long
-#define fastio \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL)
-
-#define endl "\n"
-
-using namespace std;
-
-string bi(int o, vector<vector<int>>& g) {
-    queue<int> q;
-    vector<int> c(g.size(), -1);
-    q.push(o);
-    while(q.size() > 0) {
-        int at = q.front();
+    vector<vector<char>> g(n, vector<char>(m));
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++) cin >> g[i][j];
+    queue<pair<int,int>> q;
+    vector<vector<int>> d(g.size(), vector<int>(g[0].size(), -1));
+    d[0][0] = 0;
+    q.push({0,0});
+    while(q.size() > 0) { 
+        pair<int,int> at = q.front();
         q.pop();
-        for(int& v : g[at]) {
-            if(c[v] == c[at]) return "NAO";
-            else if(c[v] == -1) {
-                c[v] = 1 - c[at];
-                q.push(o);
+        if(at.first == 0 && at.second == 4) {
+            cout << d[at.first][at.second] << endl;
+            return EXIT_SUCCESS;
+        }
+        for(int i = 0; i < 4; i++) {
+            int nx = at.first + dx[i];
+            int ny = at.second + dy[i];
+            if(nx >= 0 && ny >= 0 && nx < g.size() && ny < g[0].size() && d[nx][ny] == -1) {
+                if(g[nx][ny] == '.' || g[nx][ny] == 'L') {
+                    d[nx][ny] = d[at.first][at.second]+1;
+                    q.push({nx,ny});
+                }
             }
         }
     }
-    return "SIM";
-}
-
-int main() {
-    fastio;
-    int n,m;
-    cin >> n >> m;
-    vector<vector<int>> g(n);
-    for(int i = 0; i < m; i++) {
-        int u,v;
-        cin >> u >> v;
-        g[u].push_back(v);
-    }
-    string r = bi(0,g);
-    cout << r << endl;
+    cout << "impossible" << endl;
     return 0;
 }
-
+ * */

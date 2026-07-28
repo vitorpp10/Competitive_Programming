@@ -1,4 +1,3 @@
-//1 count cp 
 #include <bits/stdc++.h>
 
 #define ll long long
@@ -10,52 +9,39 @@
 
 using namespace std;
 
-const int INF = 1e9;
-
-vector<int> dj(int o, vector<vector<pair<int,int>>>& g) {
-    vector<int> d(g.size(), INF);
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
-    d[o] = 0;
-    q.push({0, o});
-    while(q.size() > 0) {
-        int w = q.top().first;
-        int cw = q.top().second;
-        if(w > d[cw]) continue;
-        for(int& v : g[cw]) {
-            int pv = v.first;
-            int cv = v.second;
-            if(d[cv] > d[cw] + pv) {
-                d[cv] = d[cw] + pv;
-                p[cv] = cw;
-                q.push({d[cv], cv});
-            }
-        }
-    }
-    return d;
-}
+int dx[]={-1,1,0,0};
+int dy[]={0,0,-1,1};
 
 int main() {
     fastio;
+    //police && thief 4 directions fill
     int n,m;
     cin >> n >> m;
-    vector<vector<pair<int,int>>> g(n);
-    for(int i = 0; i < m; i++) {
-        int u,v,l;
-        cin >> u >> v >> l, u--,v--;
-        g[v].push_back({l,u});
-        g[u].push_back({l,v});
-    }
-    vector<int> r = dj(0,g);
-    if(r[n-1] == -1) cout << "IMPOSSIBLE" << endl;
-    else {
-        vector<int> rr;
-        int t = n-1;
-        while(t != -1) {
-            rr.push_back(t);
-            t = r[t];
+    vector<vector<char>> g(n, vector<char>(m));
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++) cin >> g[i][j];
+    queue<pair<int,int>> q;
+    vector<vector<int>> d(g.size(), vector<int>(g[0].size(), -1));
+    d[0][0] = 0;
+    q.push({0,0});
+    while(q.size() > 0) { 
+        pair<int,int> at = q.front();
+        q.pop();
+        if(at.first == 0 && at.second == 4) {
+            cout << d[at.first][at.second] << endl;
+            return EXIT_SUCCESS;
         }
-        reverse(rr.begin(), rr.end());
-        for(const int& rrr : rr) cout << rrr+1 << endl;
+        for(int i = 0; i < 4; i++) {
+            int nx = at.first + dx[i];
+            int ny = at.second + dy[i];
+            if(nx >= 0 && ny >= 0 && nx < g.size() && ny < g[0].size() && d[nx][ny] == -1) {
+                if(g[nx][ny] == '.' || g[nx][ny] == 'L') {
+                    d[nx][ny] = d[at.first][at.second]+1;
+                    q.push({nx,ny});
+                }
+            }
+        }
     }
+    cout << "impossible" << endl;
     return 0;
 }
