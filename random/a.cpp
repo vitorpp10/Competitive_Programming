@@ -9,42 +9,58 @@
 
 using namespace std;
 
-string ch(int o, int& n, vector<vector<int>>& g) {
-    queue<int> q;
-    vector<bool> t(g.size(), false);
-    int c = 0;
-    t[o] = true;
-    q.push(o);
-    while(q.size() > 0) {
-        int at = q.front();
-        q.pop();
-        c++;
-        for(int& v : g[at]) {
-            if(!t[v]) {
-                t[v] = true;
-                q.push(v);
-            }
-        }
-    }
-    if(c == n) return "FHTAGN!";
-    else return "NO";
+const int INF = 100100;
+
+int pai[INF];
+int peso[INF];
+
+int find(int x) {
+    if(pai[x] == x) return x;
+    return pai[x] = find(pai[x]);
 }
 
-int main() {
+void join(int x, int y) {
+    x = find(x);
+    y = find(y);
+    if(x == y) return;
+
+    if(peso[x] < peso[y]) {
+        pai[x] = y;
+    } else {
+        pai[y] = x;
+        if(peso[x] == peso[y]) peso[x]++;
+    }
+}
+
+struct Aresta {
+    int u,v,custo;
+    bool operator<(const Aresta& outra) const {
+        return custo < outra.custo;
+    }
+};
+
+int main() { 
     fastio;
     int n,m;
     cin >> n >> m;
-    vector<vector<int>> g(n);
+    vector<Aresta> arestas;
     for(int i = 0; i < m; i++) {
-        int u,v;
-        cin >> u >> v, u--, v--;
-        g[u].push_back(v);
-        g[v].push_back(u);
+        int u,v,custo;
+        cin >> u >> v >> custo;
+        arestas.push_back({u,v,custo});
     }
-    if(n != m || n < 3) cout << "NO" << endl;
-    else {
-        string r = ch(0,n,g);
-        cout << r << endl;
+    for(int i = 0; i <= n; i++) {
+        pai[i] = i;
+        peso[i] = 0;
     }
+    sort(arestas.begin(), arestas.end());
+    int custo_mst = 0;
+    for(Aresta a : arestas) {
+        if(find (a.u) != find(a.v)) {
+            join(a.u, a.v);
+            custo_mst += a.custo;
+        }
+    }
+    cout <<  "custo: " << custo_mst << endl;
     return 0;
-}
+}} 
