@@ -9,58 +9,38 @@
 
 using namespace std;
 
-const int INF = 100100;
-
-int pai[INF];
-int peso[INF];
+vector<int> boss;
 
 int find(int x) {
-    if(pai[x] == x) return x;
-    return pai[x] = find(pai[x]);
+    if(boss[x] == x) return x;
+    return boss[x] = find(boss[x]);
 }
 
-void join(int x, int y) {
-    x = find(x);
-    y = find(y);
-    if(x == y) return;
-
-    if(peso[x] < peso[y]) {
-        pai[x] = y;
-    } else {
-        pai[y] = x;
-        if(peso[x] == peso[y]) peso[x]++;
-    }
+void join(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if(a != b) boss[a] = b;
 }
 
-struct Aresta {
-    int u,v,custo;
-    bool operator<(const Aresta& outra) const {
-        return custo < outra.custo;
-    }
-};
-
-int main() { 
+int main() {
     fastio;
-    int n,m;
-    cin >> n >> m;
-    vector<Aresta> arestas;
-    for(int i = 0; i < m; i++) {
-        int u,v,custo;
-        cin >> u >> v >> custo;
-        arestas.push_back({u,v,custo});
+    int n;
+    cin >> n;
+    vector<pair<int,int>> g;
+    for(int i = 0; i < n; i++) {
+        int x,y;
+        cin >> x >> y;
+        g.push_back({x,y});
     }
-    for(int i = 0; i <= n; i++) {
-        pai[i] = i;
-        peso[i] = 0;
-    }
-    sort(arestas.begin(), arestas.end());
-    int custo_mst = 0;
-    for(Aresta a : arestas) {
-        if(find (a.u) != find(a.v)) {
-            join(a.u, a.v);
-            custo_mst += a.custo;
-        }
-    }
-    cout <<  "custo: " << custo_mst << endl;
+    boss.resize(n);
+    for(int i = 0; i < n; i++) boss[i] = i;
+    for(int i = 0; i < n; i++)
+        for(int j = i + 1; j < n; j++)
+            if(g[i].first == g[j].first || g[i].second == g[j].second)
+                join(i, j);
+    int c = 0;
+    for(int i = 0; i < n; i++) 
+        if(boss[i] == i) c++;
+    cout << c - 1 << endl;
     return 0;
-}} 
+}
