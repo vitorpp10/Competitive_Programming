@@ -9,38 +9,32 @@
 
 using namespace std;
 
-vector<int> boss;
-
-int find(int x) {
-    if(boss[x] == x) return x;
-    return boss[x] = find(boss[x]);
-}
-
-void join(int a, int b) {
-    a = find(a);
-    b = find(b);
-    if(a != b) boss[a] = b;
-}
-
-int main() {
-    fastio;
+int main() {     
+    fastio;    
     int n;
     cin >> n;
-    vector<pair<int,int>> g;
-    for(int i = 0; i < n; i++) {
-        int x,y;
-        cin >> x >> y;
-        g.push_back({x,y});
+    vector<int> v(n);
+    for(int i = 0; i < n; i++) cin >> v[i];
+    int s = 0, d = 0;
+    int esquerda = 0;
+    int direita = n - 1;
+    bool turno_sereja = true;
+    while (esquerda <= direita) {
+        int carta_escolhida;
+        if (v[esquerda] > v[direita]) {
+            carta_escolhida = v[esquerda];
+            esquerda++; 
+        } else {
+            carta_escolhida = v[direita];
+            direita--;
+        }
+        if (turno_sereja) {
+            s += carta_escolhida;
+        } else {
+            d += carta_escolhida;
+        }
+        turno_sereja = !turno_sereja;
     }
-    boss.resize(n);
-    for(int i = 0; i < n; i++) boss[i] = i;
-    for(int i = 0; i < n; i++)
-        for(int j = i + 1; j < n; j++)
-            if(g[i].first == g[j].first || g[i].second == g[j].second)
-                join(i, j);
-    int c = 0;
-    for(int i = 0; i < n; i++) 
-        if(boss[i] == i) c++;
-    cout << c - 1 << endl;
+    cout << s << " " << d << endl;
     return 0;
 }

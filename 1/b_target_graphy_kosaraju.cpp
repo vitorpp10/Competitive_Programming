@@ -25,7 +25,7 @@ int main() {
     vector<bool> t2(n+1, false);
     for(int i = 1; i <= m; i++) {
       int v, w, p;
-      cin >> v >> w >> p;
+      cin >> v >> w >> p; 
       if(p == 1) {
         v1[v].push_back(w);
         v2[w].push_back(v);
