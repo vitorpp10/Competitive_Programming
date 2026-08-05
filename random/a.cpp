@@ -11,16 +11,16 @@ using namespace std;
 
 int main() {
     fastio;
-    int tt;
-    cin >> tt;
+    int n, tt;
+    cin >> n >> tt;
+    vector<int> v(n+1);
+    for(int i = 1; i <= n; i++) cin >> v[i];
     while(tt--) {
-        int n;
-        bool p = true;
-        cin >> n;
-        int sn = (int)sqrt(n);
-        for(int i = 2; i * i <= sn; i++) if(sn % i == 0) p = false;
-        if(p) cout << "YES" << endl;
-        else cout << "NO" << endl;
+        int a,b;//c=0;
+        cin >> a >> b;
+        //for(int i = a; i <= b; i++) c += v[i];
+        int c = accumulate(v.begin()+a, v.end()+(v.size()-b), 0);
+        cout << c << endl;
     }
     return 0;
 }
