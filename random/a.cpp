@@ -11,16 +11,24 @@ using namespace std;
 
 int main() {
     fastio;
-    int n, tt;
-    cin >> n >> tt;
-    vector<int> v(n+1);
-    for(int i = 1; i <= n; i++) cin >> v[i];
-    while(tt--) {
-        int a,b;//c=0;
-        cin >> a >> b;
-        //for(int i = a; i <= b; i++) c += v[i];
-        int c = accumulate(v.begin()+a, v.end()+(v.size()-b), 0);
-        cout << c << endl;
-    }
+    //1 a n | v[n + 1]
+    //fa > fb --> fa supervisor > fb 
+    //fa com fa --> sempre superioridade
+    //output = número mínimo de grupos formados
+    //pi = denota o superior imediato do funcionário atual 
+    //pi == -1 --> o funcionário atual não tem supervisor
+    //pi != i, ou seja, ninguém é supervisor de si mesmo 
+    //grupo -> funconarios e somente 1 chefe(supervisor)
+    //while(true) {
+    //  if(vetor[atual] = -1) {
+    //      c++;
+    //      break;
+    //  } else {
+    //      vetor[atual] = atual;
+    //  }
+    //
+    //}
+    int n;
+    cin >> n;
     return 0;
 }
