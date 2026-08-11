@@ -9,39 +9,97 @@
 
 using namespace std;
 
-int dx[]={-1,1,0,0};
-int dy[]={0,0,-1,1};
+/* 
+ *  struct edge {
+ *      int u,v,l;
+ *  };
+ *
+ *  vector<int> boss;
+ *
+ *  int find(int x) {
+ *      if(boss[x] == x) return x;
+ *      return boss[x] = find(boss[x]);
+ *  }
+ *
+ *  void join(edge a, edge b) {
+ *      a = find(a);
+ *      b = find(b);
+ *      if(a != b) {
+ *          boss[a] = b;
+ *      }
+ *  }
+ *
+ *  main: 
+ *
+ *  int n,m;
+ *  cin >> n >> m;
+ *  vector<edge> edges;
+ *  for(int i = 0; i < m; i++) {
+ *      int u,v,l;
+ *      cin >> u >> v >> l;
+ *      edges.push_back({u,v,l});
+ *  }
+ *  boss.resize(n);
+ *  for(int i = 0; i < n; i++) boss[i] = i;
+ *  int c = 0;
+ *  int by = 0;
+ *  for(edge& Edge : edges) {
+ *      if(find(Edge.u) != find(Edge.v)) {
+ *          join(Edge.u, Edge.v);
+ *          c += Edge.w;
+ *          by++;
+ *          if(by == n-1) break;
+ *      }
+ *  }
+ *  cout << porra com porra;
+ *
+ * */ 
 
-int main() {
+struct edge {
+    int u,v,w;
+};
+
+bool compareEdge(edge a, edge b) {
+    return a.w < b.w;
+}
+
+vector<int> boss;
+
+int find(int x) {
+    if(boss[x] == x) return x;
+    return boss[x] = find(boss[x]);
+}
+
+void join(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if(a != b) {
+        boss[a] = b;
+    }
+}
+
+int main() { 
     fastio;
     int n,m;
     cin >> n >> m;
-    vector<vector<char>> v(n, vector<char>(m));
-    for(int i = 0; i < n; i++) 
-        for(int j = 0; j < m; j++) cin >> v[i][j];
-    queue<pair<int,int>> q;
+    vector<edge> edges;
+    for(int i = 0; i < m; i++) {
+        int u,v,w;
+        cin >> u >> v >> w;
+        edges.push_back({u,v,w});
+    }
+    boss.resize(n);
+    for(int i = 0; i < n; i++) boss[i] = i;
     int c = 0;
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < m; j++) {
-            if(v[i][j] == '.') {
-                v[i][j] = '#';
-                c++;
-                q.push({i,j});
-                while(q.size() > 0) {
-                    pair<int,int> at = q.front();
-                    q.pop();
-                    for(int k = 0; k < 4; k++) {
-                        int nx = at.first + dx[k];
-                        int ny = at.second + dy[k];
-                        if(nx >= 0 && ny >= 0 && nx < v.size() && ny < v[0].size() && v[nx][ny] == '.') {
-                            v[nx][ny] = '#';
-                            q.push({nx,ny});
-                        } 
-                    }
-                }
-            }
+    int by = 0;
+    for(edge& Edge : edges) {
+        if(find(Edge.u) != find(Edge.v)) {
+            join(Edge.u, Edge.v);
+            c += Edge.v;
+            by++;
+            if(by == n-1) break;
         }
     }
-    cout << c << endl;
     return 0;
 }
+
