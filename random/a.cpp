@@ -9,97 +9,37 @@
 
 using namespace std;
 
-/* 
- *  struct edge {
- *      int u,v,l;
- *  };
- *
- *  vector<int> boss;
- *
- *  int find(int x) {
- *      if(boss[x] == x) return x;
- *      return boss[x] = find(boss[x]);
- *  }
- *
- *  void join(edge a, edge b) {
- *      a = find(a);
- *      b = find(b);
- *      if(a != b) {
- *          boss[a] = b;
- *      }
- *  }
- *
- *  main: 
- *
- *  int n,m;
- *  cin >> n >> m;
- *  vector<edge> edges;
- *  for(int i = 0; i < m; i++) {
- *      int u,v,l;
- *      cin >> u >> v >> l;
- *      edges.push_back({u,v,l});
- *  }
- *  boss.resize(n);
- *  for(int i = 0; i < n; i++) boss[i] = i;
- *  int c = 0;
- *  int by = 0;
- *  for(edge& Edge : edges) {
- *      if(find(Edge.u) != find(Edge.v)) {
- *          join(Edge.u, Edge.v);
- *          c += Edge.w;
- *          by++;
- *          if(by == n-1) break;
- *      }
- *  }
- *  cout << porra com porra;
- *
- * */ 
+const ll INF = 1e18;
 
-struct edge {
-    int u,v,w;
-};
-
-bool compareEdge(edge a, edge b) {
-    return a.w < b.w;
-}
-
-vector<int> boss;
-
-int find(int x) {
-    if(boss[x] == x) return x;
-    return boss[x] = find(boss[x]);
-}
-
-void join(int a, int b) {
-    a = find(a);
-    b = find(b);
-    if(a != b) {
-        boss[a] = b;
-    }
-}
-
-int main() { 
+int main() {
     fastio;
-    int n,m;
+    int n,m,c=0;
     cin >> n >> m;
-    vector<edge> edges;
+    vector<vector<pair<int,int>>> g(n+1);
     for(int i = 0; i < m; i++) {
-        int u,v,w;
-        cin >> u >> v >> w;
-        edges.push_back({u,v,w});
+        int u,v,l;
+        cin >> u >> v >> l;
+        g[u].push_back({l,v});
+        g[v].push_back({l,u});
     }
-    boss.resize(n);
-    for(int i = 0; i < n; i++) boss[i] = i;
-    int c = 0;
-    int by = 0;
-    for(edge& Edge : edges) {
-        if(find(Edge.u) != find(Edge.v)) {
-            join(Edge.u, Edge.v);
-            c += Edge.v;
-            by++;
-            if(by == n-1) break;
+    vector<ll> d(g.size(), INF);
+    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> q;
+    d[1] = 0;
+    q.push({0, 1});
+    while(q.size() > 0) {
+        ll w = q.top().first;
+        int cw = q.top().second;
+        if(w > d[cw]) continue;
+        for(auto& v : g[cw]) {
+            int pv = v.first;
+            int cv = v.second;
+            if(d[cv] > d[cw] + pv) {
+                d[cv] = d[cw] + pv;
+                q.push({d[cv], cv});
+                c += d[cv];
+            }
         }
     }
+    cout << c << endl;
     return 0;
 }
-
