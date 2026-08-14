@@ -1,45 +1,79 @@
-#include <bits/stdc++.h>
+use std::cmp::Ordering;
+use std::collections::BinaryHeap;
+use std::io::{self, BufRead};
 
-#define ll long long
-#define fastio \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL)
+const INF: i64 = 1e18 as i64;
 
-#define endl "\n"
+#[derive(Copy, Clone, Eq, PartialEq)]
+struct State {
+    w: i64,
+    cw: usize,
+    uw: usize,
+}
 
-using namespace std;
-
-const ll INF = 1e18;
-
-int main() {
-    fastio;
-    int n,m,c=0;
-    cin >> n >> m;
-    vector<vector<pair<int,int>>> g(n+1);
-    for(int i = 0; i < m; i++) {
-        int u,v,l;
-        cin >> u >> v >> l;
-        g[u].push_back({l,v});
-        g[v].push_back({l,u});
+impl Ord for State {
+    fn cmp(&self, other: &Self) -> Ordering {
+        other.w.cmp(&self.w)
     }
-    vector<ll> d(g.size(), INF);
-    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> q;
-    d[1] = 0;
-    q.push({0, 1});
-    while(q.size() > 0) {
-        ll w = q.top().first;
-        int cw = q.top().second;
-        if(w > d[cw]) continue;
-        for(auto& v : g[cw]) {
-            int pv = v.first;
-            int cv = v.second;
-            if(d[cv] > d[cw] + pv) {
-                d[cv] = d[cw] + pv;
-                q.push({d[cv], cv});
-                c += d[cv];
+}
+
+impl PartialOrd for State {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+fn main() {
+    let stdin = io::stdin();
+    let mut iterator = stdin.lock().lines().map(|ln| ln.unwrap());
+    
+    let first_line = iterator.next().unwrap();
+    let mut tokens = first_line.split_whitespace();
+    let n: usize = tokens.next().unwrap().parse().unwrap();
+    let m: usize = tokens.next().unwrap().parse().unwrap();
+
+    let mut g: Vec<Vec<(i32, usize)>> = vec![vec![]; n + 1];
+
+    for _ in 0..m {
+        if let Some(line) = iterator.next() {
+            let mut edge_tokens = line.split_whitespace();
+            let u: usize = edge_tokens.next().unwrap().parse().unwrap();
+            let v: usize = edge_tokens.next().unwrap().parse().unwrap();
+            let l: i32 = edge_tokens.next().unwrap().parse().unwrap();
+            g[u].push((l, v));
+        }
+    }
+
+    let mut d: Vec<Vec<i64>> = vec![vec![INF; 2]; g.len()];
+    let mut q = BinaryHeap::new();
+
+    d[1][0] = 0;
+    q.push(State { w: 0, cw: 1, uw: 0 });
+
+    while let Some(State { w, cw, uw }) = q.pop() {
+        if w > d[cw][uw] {
+            continue;
+        }
+
+        for &(pv, cv) in &g[cw] {
+            let pv_i64 = pv as i64;
+            
+            if d[cv][0] > d[cw][0] + pv_i64 {
+                d[cv][0] = d[cw][0] + pv_i64;
+                q.push(State { w: d[cv][0], cw: cv, uw: 0 });
+            }
+
+            if d[cv][1] > d[cw][0] + (pv_i64 / 2) {
+                d[cv][1] = d[cw][0] + (pv_i64 / 2);
+                q.push(State { w: d[cv][1], cw: cv, uw: 1 });
+            }
+            
+            if d[cv][1] > d[cw][1] + pv_i64 {
+                d[cv][1] = d[cw][1] + pv_i64;
+                q.push(State { w: d[cv][1], cw: cv, uw: 1 });
             }
         }
     }
-    cout << c << endl;
-    return 0;
+
+    println!("{}", d[n][1]);
 }
