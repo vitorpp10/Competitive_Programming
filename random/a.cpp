@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
-#define fastio                        \
+#define ll long long
+#define fastio \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL)
 
@@ -8,11 +9,31 @@
 
 using namespace std;
 
-const int INF = 1e8;
+const ll INF = 1e18;
+
+vector<int> dj(int o, vector<vector<pair<int,int>>>& g) {
+    vector<ll> d(g.size(), INF);
+    vector<int> p(g.size(), -1);
+    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, greater<pair<ll,ll>>> q;
+    d[o] = 0;
+    q.push({0, o});
+    while(!q.empty()) {
+        auto [w, cw] = q.top();
+        q.pop();
+        if(w > d[cw]) continue;
+        for(auto [v, cv] : g[cw]) {
+            if(d[cv] > d[cw] + v) {
+                d[cv] = d[cw] + v; 
+                p[cv] = cw;
+                q.push({d[cv], cv});
+            }
+        }
+    }
+    return p;
+}
 
 int main() {
     fastio;
-    // dijkstra;
     int n,m;
     cin >> n >> m;
     vector<vector<pair<int,int>>> g(n+1);
@@ -20,40 +41,19 @@ int main() {
         int u,v,l;
         cin >> u >> v >> l;
         g[u].push_back({l,v});
-        g[v].push_back({l,u});
+        g[u].push_back({l,u});
     }
-    int x;
-    cin >> x;
-    vector<int> d(g.size(), INF);
-    vector<int> p(g.size(), -1);
-    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
-    d[x] = 0;
-    q.push({0, x});
-    while(q.size() > 0) {
-        int w = q.top().first;
-        int cw = q.top().second;
-        if(w > d[cw]) continue;
-        for(auto& v : g[cw]) {
-            int pv = v.first;
-            int cv = v.second;
-            if(d[cv] > d[cw] + pv) {
-                d[cv] = d[cw] + pv;
-                p[cv] = cw;
-                q.push({d[cv], cv});
-            }
-        }
-    }
-    if(p[n-1] == -1) cout << -1 << endl;
+    vector<int> r = dj(0, g);
+    if(r[n] == -1) cout << "IMPOSSIBLE" << endl;
     else {
-        vector<int> r;
-        int t = n-1;
+        vector<int> rr;
+        int t = n;
         while(t != -1) {
-            r.push_back(t);
+            rr.push_back(t);
             t = r[t];
         }
-        reverse(r.begin(), r.end());
-        for(int i = 0; i < r.size()-1; i++) cout << r[i]+1 << " ";
-        cout << r[r.size()-1] << endl;
+        reverse(rr.begin(), rr.end());
+        for(int& rrr : rr) cout << rrr << endl;
     }
     return 0;
 }
