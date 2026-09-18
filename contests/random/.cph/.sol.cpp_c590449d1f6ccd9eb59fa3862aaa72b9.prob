@@ -1,0 +1,1 @@
+{"name":"Local: sol","url":"/home/vitor/zzz/algorithm/contests/random/sol.cpp","tests":[{"id":1789729895360,"input":"beazcd\nabadcd\nabad","output":"azbecd\nabcd\n-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/vitor/zzz/algorithm/contests/random/sol.cpp","group":"local","local":true}
