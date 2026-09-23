@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+#define ll long long    
 #define fastio                        \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL)
@@ -8,38 +9,24 @@
 
 using namespace std;
 
-bool dfs(int at, vector<int>& c, vector<vector<int>>& g) {
-    for(int& v : g[at]) {
-        if(c[v] == 0) {
-            c[v] = 3 - c[at];
-            if(!dfs(v, c, g)) return false;
-        } else if(c[v] == c[at]) return false;
-    }
-    return true;
-}
-
 int main() {
     fastio;
-    int n,m;
-    cin >> n >> m;
-    vector<vector<int>> g(n+1);
-    for(int i = 0; i < m; i++) {
-        int a,b;
-        cin >> a >> b;
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
-    vector<int> c(g.size(), 0);
-    bool ok = true;
-    for(int i = 1; i <= n; i++) {
-        if(c[i] == 0) {
-            c[i] = 1;
-            if(!dfs(i, c, g)) ok = false;
+    for(int z = 2; z--;) {
+        string s;
+        cin >> s;
+        vector<int> pref(s.size(), 0);
+        for(int i = 1; i < s.size(); i++) {
+            pref[i] = pref[i - 1];
+            if(s[i] == s[i-1]) pref[i]++;
+        }    
+        int m;
+        cin >> m;
+        while(m--) {
+            int l, r;
+            cin >> l >> r;
+            cout << pref[r - 1] - pref[l - 1] << endl;
         }
+        cout << endl << endl;
     }
-    if(ok) {
-        for(int i = 1; i <= n; i++) cout << c[i] << " ";
-        cout << endl;
-    } else cout << "IMPOSSIBLE" << endl;
     return 0;
 }
