@@ -1,0 +1,296 @@
+Primeiro, dois treinos de equipe, não apenas um. Se seus colegas são iniciantes, mecânica de equipe pode custar mais AC do que conhecimento técnico. Eu faria uma simulação completa no dia 22 e pelo menos um mini-team-contest de 2–3h no dia 23.
+Segundo, eu colocaria uma categoria explícita de “Should Have Solved”. Depois de cada contest, cada problema entra em uma destas três caixas:
+- SHS — Should Have Solved: estava dentro do seu conhecimento atual e você perdeu por leitura, seleção, implementação, bug ou tempo.
+- Learnable Now: faltou uma técnica pequena que ainda pode virar AC até dia 25.
+- Out of Scope: exigiria conhecimento demais para converter em ponto nesta sprint.
+A sprint inteira gira principalmente em torno dos dois primeiros. Problema Out of Scope não rouba três horas porque é bonito.
+Terceiro, eu não faria “teoria cirúrgica” apenas no dia 21. Teoria entra todos os dias, mas somente puxada por erro. Se no dia 17 você perde dois AC por topo sort, aprende topo sort no próprio dia 17 ou 18. Não espera quatro dias.
+Método oficial da Sprint CP
+Eu criaria um protocolo próprio, porque não usaria o Método 5.0 completo.
+Para cada problema:
+Fase 1 — leitura e modelagem
+Antes de codar, escreva ou verbalize:
+O que exatamente precisa ser produzido?
+
+Constraints?
+
+Brute force óbvio?
+
+Que propriedade parece explorável?
+
+Casos extremos?
+
+Complexidade máxima aceitável?
+
+Minha solução realmente satisfaz o enunciado?
+Seu baseline anterior já mostrou tendência a começar implementação antes de estabilizar o modelo. Durante essa sprint, eu atacaria isso agressivamente.
+Fase 2 — tentativa
+Sem editorial.
+Se você reconheceu uma abordagem plausível, tenta implementar.
+Fase 3 — decisão de abandonar
+Durante contest, abandonar também é habilidade.
+Se um problema está drenando tempo sem progresso estrutural:
+marca → troca → volta depois.
+
+Quero eliminar o comportamento de gastar 70 minutos em problema errado enquanto existem dois AC acessíveis.
+Fase 4 — correção
+Depois do contest:
+Por que não foi AC?
+
+Leitura?
+Modelagem?
+Técnica desconhecida?
+Reconhecimento?
+Complexidade?
+Implementação?
+Edge case?
+Overflow?
+Debug?
+Escolha ruim de problema?
+Tempo?
+Fase 5 — Upsolve
+Se for SHS ou Learnable Now:
+resolver → entender → fechar → reimplementar sem olhar.
+
+Não basta ler editorial e pensar “entendi”.
+Eu reorganizaria os 8 dias assim
+Dia	Horas	Missão
+17/09	8h	Baseline + mapa de erros
+18/09	8h	Speed/AC conversion
+19/09	9h	Full Contest #1
+20/09	10h	Weakness demolition
+21/09	8h	Técnica cirúrgica + aplicação
+22/09	9h	Team Simulation #1
+23/09	8h	Final heavy test + Team mini-sim
+24/09	5h	Taper
+	65h
+
+
+17/09 — Baseline brutal
+Eu manteria quase exatamente o que você escreveu:
+3h virtual contest inédito
+2h autópsia
+2h SHS/upsolve
+1h reimplementação
+Mas quero um output no final:
+TOP 3 GARGALOS
+
+1.
+2.
+3.
+
+SHOULD HAVE SOLVED:
+...
+
+LEARNABLE NOW:
+...
+
+OUT OF SCOPE:
+...
+Isso determina todo o resto.
+18/09 — AC Factory
+Aqui você precisa treinar uma coisa específica:
+problema acessível não pode escapar.
+
+Eu faria aproximadamente:
+2h — speed set de A/B fáceis
+2h — implementation / maps / sets / sorting / prefix / simple greedy
+2h — BFS/DFS/DSU/binary search ou weakness identificada
+2h — mini-contest
+Meta não é aprender algoritmo sofisticado.
+É reduzir:
+leitura → modelo → implementação → AC.
+
+Eu começaria a medir tempo mediano para AC em problemas acessíveis.
+19/09 — Full Contest #1
+Eu faria 4–5h reais, o mais próximo possível da competição.
+Depois:
+1h triagem de todos os problemas
+2h upsolve SHS
+1h reimplementação ou revisão
+Métrica central:
+quantos problemas acessíveis existiam versus quantos você realmente converteu em AC?
+
+Essa taxa é muito mais útil agora que rating.
+20/09 — Domingo extremo
+Eu manteria as 10h, mas não faria 10h de problemas máximos.
+Estrutura:
+3h weakness #1
+2h weakness #2
+2h speed solving
+2h mini-contest
+1h reimplementação/revisão
+Domingo normalmente é OFF, mas sprint é justamente a exceção temporária.
+Dia 25 acabou → domingo volta a zero.
+21/09 — Knowledge Gaps
+Esse é o dia onde o diagnóstico manda.
+Se aparecer:
+basic DP → DP.
+
+Se aparecer:
+topo sort/DAG → topo.
+
+Se aparecer:
+prefix + two pointers → isso.
+
+Se aparecer:
+strings/maps/set → isso.
+
+Eu proibiria estudar alguma técnica simplesmente porque:
+“é importante em CP”.
+
+Só entra se houver boa chance de converter em AC nesta prova.
+Particularmente, com seu tempo de CP atual, eu priorizaria muito antes de estruturas avançadas:
+- implementation;
+- sorting;
+- maps/sets;
+- prefix sums;
+- two pointers;
+- binary search;
+- greedy básico;
+- BFS/DFS;
+- DSU;
+- shortest path básico;
+- DAG/topological sort;
+- basic DP se realmente necessário.
+Eu não tentaria virar especialista em Segment Tree, LCA, flow e geometry em quatro dias.
+22/09 — TEAM DAY
+Esse dia é extremamente importante.
+Prova inteira, 3 pessoas, 1 PC, condições reais.
+Seus colegas não precisam aprender C++ avançado.
+Eles precisam aprender a serem úteis.
+Eu treinaria os dois para:
+- ler enunciados em paralelo;
+- resumir cada problema em 30–60 segundos;
+- extrair constraints;
+- identificar problema trivial;
+- trabalhar exemplos no papel;
+- procurar edge cases;
+- testar seu código;
+- preparar casos;
+- acompanhar scoreboard;
+- avisar quando você está insistindo demais em um problema;
+- não monopolizar PC sem motivo.
+E você precisa aprender a dizer:
+“Leia D e me diga exatamente input/output, constraints e brute force.”
+
+Enquanto você codifica B.
+Isso aumenta seu throughput cognitivo.
+Estratégia inicial da prova
+Nos primeiros ~15–20 min:
+os três leem problemas diferentes.
+Classificam:
+verde / amarelo / vermelho.
+
+Você não começa automaticamente pelo primeiro que leu.
+O objetivo é encontrar primeiro AC rápido e construir scoreboard.
+23/09 — Exame final
+Aqui eu quero um comparativo direto com 17/09.
+Outro contest inédito.
+Registrar:
+Métrica	17/09	23/09
+AC
+tempo até 1º AC
+WA
+SHS perdidos
+tempo desperdiçado
+bugs de implementação
+problemas corretamente classificados
+hints/editorial necessários depois
+
+
+Isso será seu verdadeiro resultado da sprint.
+Depois eu faria 2–3h de team mini-sim, especialmente se a simulação do dia 22 revelar problemas de comunicação.
+24/09 — Taper
+Concordo fortemente com reduzir para 5h.
+Nada de aprender conteúdo grande.
+Eu faria:
+90 min: problemas fáceis/médios
+60 min: implementação de memória
+60 min: bugs/edge cases que apareceram na sprint
+60 min: estratégia de equipe
+30 min: ambiente/cheatsheet mental
+restante: revisão muito leve
+E acabou cedo.
+Quero você chegando no dia 25 com sensação de:
+quero competir.
+
+Não:
+“não aguento mais abrir uma questão.”
+
+Métricas diárias
+Para ficar tão boa quanto a sprint de Cálculo, você precisa de dados.
+Eu registraria só estes:
+HORAS
+
+PROBLEMAS TENTADOS
+AC
+WA
+TLE
+RE
+
+TEMPO PARA PRIMEIRO AC
+
+AC SEM HINT
+AC APÓS HINT
+
+SHOULD HAVE SOLVED PERDIDOS
+
+ERROS:
+- leitura
+- modelagem
+- reconhecimento
+- técnica
+- implementação
+- edge case
+- complexidade
+- debug
+- seleção de problema
+
+TEMPO DESPERDIÇADO NO PIOR PROBLEMA
+
+UPSOLVES CONCLUÍDOS
+
+REIMPLEMENTAÇÕES SEM CONSULTA
+Nada de 50 métricas.
+Uma métrica nova que eu colocaria
+Conversion Rate
+Dos problemas que estavam objetivamente ao seu alcance:
+quantos viraram AC?
+
+Exemplo:
+Você tinha 5 problemas SHS.
+Resolveu 3.
+conversion = 60%.
+Na maratona, levar isso para 80–90% pode valer muito mais do que aprender duas técnicas avançadas.
+Seu foco psicológico também muda
+Durante Cálculo, era:
+precisão e reconhecimento.
+
+Aqui é:
+decidir rápido onde gastar tempo.
+
+CP competitivo não mede somente:
+“você consegue resolver?”
+
+Mede:
+“você consegue identificar o problema certo, modelar, implementar, depurar e submeter antes que o relógio mate sua oportunidade?”
+
+Isso precisa aparecer na sprint.
+O que eu quero no dia 25
+Não quero promessa de posição.
+Quero quatro mudanças objetivas:
+1. Problema acessível → AC muito mais rápido.
+2. Muito menos tempo perdido em problema ruim.
+3. Bugs simples caem bastante.
+4. Seus colegas conseguem multiplicar sua capacidade em vez de esperar você resolver tudo.
+Se isso acontecer, a sprint funcionou.
+E sim: eu faria essa sprint.
+Ela está muito alinhada com o que fez a sprint de Cálculo funcionar: concentração brutal durante poucos dias, diagnóstico objetivo, erro → patch → reteste e uma prova real no final.
+Só que agora, em vez de:
+teoria → exercício → mock,
+
+o coração vira:
+contest → autópsia → upsolve → reimplementação → contest.
+
+Essa seria minha versão definitiva para 17–24/09.
